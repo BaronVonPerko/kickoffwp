@@ -12,4 +12,7 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .js('node_modules/materialize-css/dist/js/materialize.min.js', 'public/js')
+    .styles(['node_modules/materialize-css/dist/css/materialize.min.css'], 'public/css/vendor.css')
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .copy('resources/assets/images/*', 'public/images/');
