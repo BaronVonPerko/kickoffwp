@@ -18,7 +18,7 @@
 <body>
 <main>
 
-    <nav>
+    <nav class="orange">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo">KickoffWP</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -37,7 +37,7 @@
     </div>
 </main>
 
-<footer class="page-footer">
+<footer class="page-footer orange">
     <div class="container">
         <div class="row">
             <div class="col s12">
