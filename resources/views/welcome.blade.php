@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="row hero-section">
-        <div class="col s7">
+        <div class="col s12 m7">
             <img class="responsive-img" src="{{asset('images/code-screenshot.png')}}" alt="">
         </div>
 
-        <div class="col s5 center-align">
-            <h1>Kick off your WordPress customizer files.</h1>
+        <div class="col s12 m5 center-align">
+            <h2>Kick off your WordPress customizer files.</h2>
             <h5>
                 Building customizer classes is tedious and takes time. KickoffWP
                 does it for you quickly and easily.
