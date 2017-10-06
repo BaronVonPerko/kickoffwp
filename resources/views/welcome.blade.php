@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+    <div class="row hero-section">
         <div class="col s7">
             <img class="responsive-img" src="{{asset('images/code-screenshot.png')}}" alt="">
         </div>

@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<div class="flex-center position-ref full-height">
+<main>
 
     <nav>
         <div class="nav-wrapper">
@@ -35,6 +35,17 @@
     <div class="container">
         @yield('content')
     </div>
-</div>
+</main>
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h5 class="white-text">KickoffWP</h5>
+                <p>&copy; 2017 Chris Perko</p>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
