@@ -12,7 +12,9 @@ class WelcomePageEmailSignupController extends Controller
 
     	$exists = WelcomeEmailAddress::where('email', $email)->count();
 
-    	if($exists > 0) return false;
+    	if($exists > 0) {
+    		return response(["error" => "Email already signed up"], 200);
+	    }
 
     	WelcomeEmailAddress::create(['email' => $email]);
     }

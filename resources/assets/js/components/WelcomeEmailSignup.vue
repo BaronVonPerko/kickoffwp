@@ -9,7 +9,8 @@
         </form>
 
         <div v-if="submitSuccess">
-            <h4>Email Reminder Set!</h4>
+            <h4 v-if="!error">Email Reminder Set!</h4>
+            <p v-if="error" class="red-text">An error occurred: {{error}}</p>
         </div>
     </div>
 </template>
@@ -20,6 +21,7 @@
             return {
                 email: '',
                 submitSuccess: false,
+                error: '',
             };
         },
 
@@ -29,6 +31,9 @@
                     .then((res) => {
                         console.log(res);
                         this.submitSuccess = true;
+                        if(res.data && res.data.error) {
+                            this.error = res.data.error;
+                        }
                     });
             }
         },
