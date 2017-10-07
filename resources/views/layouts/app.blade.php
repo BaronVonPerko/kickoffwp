@@ -14,9 +14,11 @@
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
+
+
 </head>
 <body>
-<main>
+<main id="app">
 
     <nav class="orange">
         <div class="nav-wrapper">
@@ -48,4 +50,8 @@
     </div>
 </footer>
 </body>
+
+<!-- JS -->
+<script src="{{asset('js/app.js')}}"></script>
+
 </html>

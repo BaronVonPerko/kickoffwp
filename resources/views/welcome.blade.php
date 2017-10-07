@@ -12,7 +12,9 @@
                 Building customizer classes is tedious and takes time. KickoffWP
                 does it for you quickly and easily.
             </h5>
-            <a href="#" class="waves-effect waves-light btn-large pulse z-depth-3">Coming Soon!</a>
+            {{--<a href="#" class="waves-effect waves-light btn-large pulse z-depth-3">Coming Soon!</a>--}}
+
+            <welcome-email-signup></welcome-email-signup>
         </div>
     </div>
 @endsection
