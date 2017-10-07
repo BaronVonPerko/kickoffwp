@@ -17,5 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/logout', function () {
+	\Illuminate\Support\Facades\Auth::logout();
+	return redirect('/');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/remindme', 'WelcomePageEmailSignupController@signup');
+
+Route::get('/profile', 'ShowProfile');

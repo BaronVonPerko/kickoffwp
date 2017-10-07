@@ -25,7 +25,8 @@
             <a href="#" class="brand-logo">KickoffWP</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 @auth
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/home') }}">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 @else
                     {{--<li><a href="{{ route('login') }}">Login</a></li>--}}
                     {{--<li><a href="{{ route('register') }}">Register</a></li>--}}
