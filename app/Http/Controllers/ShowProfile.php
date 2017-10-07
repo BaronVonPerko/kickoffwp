@@ -14,6 +14,6 @@ class ShowProfile extends Controller
     public function __invoke() {
     	$user = Auth::user();
 
-	    return view('profile', ['user' => $user]);
+	    return view('profile');
     }
 }

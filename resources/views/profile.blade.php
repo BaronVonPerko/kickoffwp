@@ -2,10 +2,39 @@
 
 @section('content')
 
-    @if($user != null)
-        <h1>you are signed in</h1>
+    @auth
+        <div class="row">
+            <div class="col sm12">
+                <h5>Welcome back, {{Auth::user()->name}}!</h5>
+            </div>
+        </div>
     @else
-        <h1>you need an account</h1>
-    @endif
+        @include('profile.anonymousCard')
+    @endauth
+
+    <div class="row">
+        <div class="col s12">
+            <div class="card orange darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Ready to get started?</span>
+                    <p>
+                        Step through easy to follow options to create a custom
+                        object-oriented class file for your WordPress theme.
+                    </p>
+                </div>
+                <div class="card-action">
+                    <a href="#" class="black-text">Let's Go!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @auth
+        <div class="row">
+            <div class="col s12 center-align">
+                <em>You don't have anything saved.</em>
+            </div>
+        </div>
+    @endauth
 
 @endsection
