@@ -25,7 +25,11 @@ Route::get('/logout', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/remindme', 'WelcomePageEmailSignupController@signup');
 
-Route::get('/profile', 'ShowProfile');
+Route::get('/profile', function() {
+	return view('profile');
+});
 
-Route::get('/new', 'ShowNewCustomizerForm');
+Route::get('/new', function() {
+	return view('newCustomizerClass');
+});
 Route::post('/new', 'CreateNewCustomizerClass');
