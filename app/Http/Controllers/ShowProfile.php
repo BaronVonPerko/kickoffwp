@@ -11,7 +11,7 @@ class ShowProfile extends Controller
 	    $customizerList = null;
 
 	    if($user != null) {
-		    $customizerList = \App\CustomizerClass::where('user_id', $user->id)->get();
+		    $customizerList = \App\CustomizerClass::User($user->id)->get();
 	    }
 
 	    return view('profile', ['customizers' => $customizerList]);

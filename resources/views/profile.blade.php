@@ -23,7 +23,7 @@
                     </p>
                 </div>
                 <div class="card-action">
-                    <a href="/new" class="black-text">Let's Go!</a>
+                    <a href="/new" class="black-text">Create a new class</a>
                 </div>
             </div>
         </div>
