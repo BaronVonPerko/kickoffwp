@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col s12">
-            <div class="card orange darken-1">
+            <div class="card orange darken-1 z-depth-3">
                 <div class="card-content white-text">
                     <span class="card-title">Ready to get started?</span>
                     <p>
@@ -23,7 +23,7 @@
                     </p>
                 </div>
                 <div class="card-action">
-                    <a href="#" class="black-text">Let's Go!</a>
+                    <a href="/new" class="black-text">Let's Go!</a>
                 </div>
             </div>
         </div>
