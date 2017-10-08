@@ -33,3 +33,4 @@ Route::get('/new', function() {
 Route::post('/new', 'CreateNewCustomizerClass');
 
 Route::get('/fields/{id}', 'CustomizerFieldsController@showFields');
+Route::post('/fields/{id}/create', 'CustomizerFieldsController@create');

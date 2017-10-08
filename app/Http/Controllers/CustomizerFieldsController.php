@@ -3,38 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\CustomizerClass;
+use App\CustomizerField;
+use App\Traits\ProtectCustomizerClassTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CustomizerFieldsController extends Controller {
 
+	use ProtectCustomizerClassTrait;
+
 	/**
 	 * Show the fields form view.
 	 */
-	public function showFields(Request $request, $id) {
-		$class = CustomizerClass::find($id);
+	public function showFields( Request $request, $id ) {
+		$class = CustomizerClass::find( $id );
 
-		if($class == null) {
+		if(!$this->checkUserAccess($class)) {
 			return redirect('/404');
 		}
 
-		$user = Auth::user();
-
-		if($user != null && $class->user_id != $user->id) {
-			return redirect('/404');
-		}
-
-		if($user == null && $class->user_id != null) {
-			return redirect('/404');
-		}
-
-		return view('fields', ['class' => $class]);
+		return view( 'fields', [ 'class' => $class ] );
 	}
 
 	/**
 	 * Save the fields.
 	 */
-	public function save() {
-		//
+	public function create( Request $request, $id ) {
+		$class = CustomizerClass::find( $id );
+
+		if(!$this->checkUserAccess($class)) {
+			return redirect('/404');
+		}
+
+		$label   = $request->get( 'label' );
+		$default = $request->get( 'default' );
+
+		return CustomizerField::create( [
+			"label"    => $label,
+			"default"  => $default,
+			"class_id" => $id,
+		] );
 	}
 }
