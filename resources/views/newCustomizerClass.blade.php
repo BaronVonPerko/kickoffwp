@@ -15,16 +15,19 @@
         </div>
     </div>
 
-    <form class="row">
+    <form class="row" action="/new" method="post">
+
+        {{ csrf_field() }}
+
         <div class="col s12">
             <div class="row">
                 <div class="input-field col s12 m6">
-                    <input type="text" placeholder="Theme Name" id="theme_name" class="validate" required>
+                    <input type="text" placeholder="Theme Name" id="theme_name" name="theme_name" class="validate" required>
                     <label for="theme_name">Theme Name</label>
                 </div>
 
                 <div class="input-field col s12 m6">
-                    <input type="text" placeholder="Section Name" id="section_name" class="validate" required>
+                    <input type="text" placeholder="Section Name" id="section_name" name="section_name" class="validate" required>
                     <label for="section_name">Section Name</label>
                 </div>
             </div>

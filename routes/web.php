@@ -28,3 +28,4 @@ Route::post('/remindme', 'WelcomePageEmailSignupController@signup');
 Route::get('/profile', 'ShowProfile');
 
 Route::get('/new', 'ShowNewCustomizerForm');
+Route::post('/new', 'CreateNewCustomizerClass');
