@@ -38,6 +38,11 @@
         </div>
         @else
             <div class="row">
+                <div class="col sm12">
+                    <h5>Continue working on your existing customizer classes</h5>
+                </div>
+            </div>
+            <div class="row">
             @foreach($customizers as $customizer)
                 <div class="col s6 m4">
                     <div class="card green lighten-3 z-depth-3">
