@@ -9,6 +9,9 @@
                     Create the fields you would like to display within this Customizer's section.
                 </p>
             </div>
+            <div class="card-action">
+                <a href="#">Create New Field</a>
+            </div>
         </div>
     </div>
 @endsection
