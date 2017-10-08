@@ -16,7 +16,7 @@
         </div>
 
         <div v-if="showCreateForm">
-            <create-field-form id="this.id"></create-field-form>
+            <create-field-form :id="id"></create-field-form>
         </div>
     </div>
 </template>

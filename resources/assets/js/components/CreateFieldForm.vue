@@ -22,9 +22,19 @@
     module.exports = {
         props: ['id'],
 
+        data: function() {
+            return {
+                newLabel: '',
+                newDefault: ''
+            }
+        },
+
         methods: {
             add: function() {
-                //
+                axios.post('/fields/' + this.id + '/create', {
+                    'label': this.newLabel,
+                    'default': this.newDefault,
+                })
             }
         }
     }
