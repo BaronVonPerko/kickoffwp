@@ -21,7 +21,7 @@ class CreateNewCustomizerClassTest extends TestCase
 	        "section_name" => "Test Section"
         ];
 
-        $this->post('/new', $data)->assertStatus(200);
+        $this->post('/new', $data);
 
         $count = \App\CustomizerClass::where('theme_name', 'Test Theme')->count();
         $this->assertEquals(1, $count);

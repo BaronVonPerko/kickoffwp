@@ -11,9 +11,11 @@ class CreateNewCustomizerClass extends Controller
 	    $theme = $request->get('theme_name');
 	    $section = $request->get('section_name');
 
-	    CustomizerClass::create([
+	    $customizerClass = CustomizerClass::create([
 	    	"theme_name" => $theme,
 		    "section_name" => $section
 	    ]);
+
+	    return redirect('/customizer/' . $customizerClass->id . '/fields');
     }
 }
