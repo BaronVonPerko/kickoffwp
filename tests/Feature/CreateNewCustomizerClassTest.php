@@ -3,12 +3,13 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateNewCustomizerClassTest extends TestCase
 {
-	use RefreshDatabase;
+	use DatabaseTransactions;
 
     /** @test */
     public function it_can_save_a_new_customizer_class()

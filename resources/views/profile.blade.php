@@ -30,11 +30,31 @@
     </div>
 
     @auth
+        @if($customizers->count() == 0)
         <div class="row">
             <div class="col s12 center-align">
                 <em>You don't have anything saved.</em>
             </div>
         </div>
+        @else
+            <div class="row">
+            @foreach($customizers as $customizer)
+                <div class="col s6 m4">
+                    <div class="card green lighten-3 z-depth-3">
+                        <div class="card-content black-text">
+                            <span class="card-title">{{$customizer->theme_name}}</span>
+                            <p>
+                                {{$customizer->section_name}}
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="/fields/{{$customizer->id}}" class="black-text">Edit Fields</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            </div>
+        @endif
     @endauth
 
 @endsection
