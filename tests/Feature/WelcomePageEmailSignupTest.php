@@ -3,11 +3,13 @@
 namespace Tests\Feature;
 
 use App\WelcomeEmailAddress;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class WelcomePageEmailSignupTest extends TestCase {
-	use RefreshDatabase;
+
+	use DatabaseTransactions;
 
 	/** @test */
 	public function it_can_register_an_email_address() {

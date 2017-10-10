@@ -14,7 +14,10 @@
     <link rel="stylesheet" href="{{asset('css/vendor.css')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 <body>
@@ -22,13 +25,32 @@
 
     <nav class="orange">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo">KickoffWP</a>
+            <a href="/" class="brand-logo">KickoffWP</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 @auth
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li class="{{ Request::is('profile') ? 'active' : '' }}">
+                        <a href="{{ url('/profile') }}">
+                            Profile
+                        </a>
+                    </li>
+                    <li><a href="/logout">Logout</a></li>
                 @else
                     {{--<li><a href="{{ route('login') }}">Login</a></li>--}}
                     {{--<li><a href="{{ route('register') }}">Register</a></li>--}}
+                @endauth
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                @auth
+                    <li class="{{ Request::is('profile') ? 'active' : '' }}">
+                        <a href="{{ url('/profile') }}">
+                            Profile
+                        </a>
+                    </li>
+                    <li><a href="/logout">Logout</a></li>
+                @else
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
                 @endauth
             </ul>
         </div>
@@ -52,6 +74,7 @@
 </body>
 
 <!-- JS -->
+<script src="{{asset('js/materialize.min.js')}}"></script>
 <script src="{{asset('js/app.js')}}"></script>
 
 @if(env('APP_ENV') != 'local')
@@ -65,5 +88,13 @@
     gtag('config', 'UA-26651291-14');
 </script>
 @endif
+
+
+<script>
+//    $(document).ready(function() {
+//        $('.button-collapse').sideNav();
+//    });
+</script>
+
 
 </html>

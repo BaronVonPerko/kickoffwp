@@ -16,6 +16,9 @@ window.Vue = require('vue');
  */
 
 Vue.component('welcomeEmailSignup', require('./components/WelcomeEmailSignup.vue'));
+Vue.component('fields', require('./components/Fields.vue'));
+Vue.component('createFieldForm', require('./components/CreateFieldForm.vue'));
+Vue.component('fieldList', require('./components/FieldList.vue'));
 
 const app = new Vue({
     el: '#app'
