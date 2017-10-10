@@ -17,6 +17,8 @@
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 <body>
 <main id="app">
@@ -89,9 +91,9 @@
 
 
 <script>
-    $(document).ready(function() {
-        $('.button-collapse').sideNav();
-    });
+//    $(document).ready(function() {
+//        $('.button-collapse').sideNav();
+//    });
 </script>
 
 

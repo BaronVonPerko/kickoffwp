@@ -18,6 +18,8 @@
         <div v-if="showCreateForm">
             <create-field-form :id="id"></create-field-form>
         </div>
+
+        <field-list></field-list>
     </div>
 </template>
 
