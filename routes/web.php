@@ -27,10 +27,17 @@ Route::post('/remindme', 'WelcomePageEmailSignupController@signup');
 
 Route::get('/profile', 'ShowProfile');
 
-Route::get('/new', function() {
-	return view('newCustomizerClass');
+Route::get('/theme/new', function() {
+	return view('newTheme');
 });
-Route::post('/new', 'CreateNewCustomizerClass');
+Route::post('/theme/new', 'CreateNewTheme');
 
+Route::get('/theme/{id}/sections', function() {
+	return view('sections');
+});
+
+/**
+ * Todo refactor
+ */
 Route::get('/fields/{id}', 'CustomizerFieldsController@showFields');
 Route::post('/fields/{id}/create', 'CustomizerFieldsController@create');

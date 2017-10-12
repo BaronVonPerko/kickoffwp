@@ -17,9 +17,9 @@ class CreateNewThemeTest extends TestCase
 	    $count = \App\Theme::where('name', 'Test Theme')->count();
 	    $this->assertEquals(0, $count);
 
-        $this->post('/newTheme', ["name" => "Test Theme"]);
+        $this->post('/theme/new', ["name" => "Test Theme"]);
 
-        $count = \App\Theme::name('Test Theme')->count();
+        $count = \App\Theme::where('name', 'Test Theme')->count();
         $this->assertEquals(1, $count);
     }
 }

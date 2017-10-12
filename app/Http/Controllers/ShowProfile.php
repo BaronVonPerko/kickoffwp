@@ -8,12 +8,12 @@ class ShowProfile extends Controller
 {
     public function __invoke() {
 	    $user = \Illuminate\Support\Facades\Auth::user();
-	    $customizerList = null;
+	    $themes = null;
 
 	    if($user != null) {
-		    $customizerList = \App\CustomizerClass::User($user->id)->get();
+		    $themes = \App\Theme::User($user->id)->get();
 	    }
 
-	    return view('profile', ['customizers' => $customizerList]);
+	    return view('profile', ['themes' => $themes]);
     }
 }
