@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomizerField extends Model
 {
-    protected $fillable = ['label', 'default', 'class_id'];
+    protected $fillable = ['label', 'default', 'section_id'];
 
-    public function scopeClass($query, $classId) {
-    	return $query->where('class_id', $classId);
+    public function scopeSection($query, $sectionId) {
+    	return $query->where('section_id', $sectionId);
     }
 }

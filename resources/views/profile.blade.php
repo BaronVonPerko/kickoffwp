@@ -50,7 +50,7 @@
                             <span class="card-title">{{$theme->name}}</span>
                         </div>
                         <div class="card-action">
-                            <a href="/fields/{{$theme->id}}" class="black-text">Edit Fields</a>
+                            <a href="/theme/{{$theme->id}}/sections" class="black-text">Edit Sections</a>
                         </div>
                     </div>
                 </div>

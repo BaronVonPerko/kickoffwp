@@ -27,17 +27,25 @@ Route::post('/remindme', 'WelcomePageEmailSignupController@signup');
 
 Route::get('/profile', 'ShowProfile');
 
+/**
+ * Themes
+ */
 Route::get('/theme/new', function() {
 	return view('newTheme');
 });
 Route::post('/theme/new', 'CreateNewTheme');
 
-Route::get('/theme/{id}/sections', function() {
-	return view('sections');
+/**
+ * Sections
+ */
+Route::get('/theme/{id}/sections', function($id) {
+	return view('sections', ["id" => $id]);
 });
+Route::post('/theme/{id}/sections', 'CreateNewSection');
+
 
 /**
- * Todo refactor
+ * Fields
  */
-Route::get('/fields/{id}', 'CustomizerFieldsController@showFields');
-Route::post('/fields/{id}/create', 'CustomizerFieldsController@create');
+Route::get('/theme/{themeId}/sections/{sectionId}/fields', 'CustomizerFieldsController@showFields');
+Route::post('/theme/{themeId}/sections/{sectionId}/fields', 'CustomizerFieldsController@create');

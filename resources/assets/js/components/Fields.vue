@@ -3,7 +3,7 @@
         <div class="row">
             <div class="card pink darken-1 z-depth-3">
                 <div class="card-content white-text">
-                    <span class="card-title">Fields for {{this.theme}} {{this.section}}</span>
+                    <span class="card-title">Fields for {{this.themeName}} {{this.sectionName}}</span>
                     <p>
                         Create the fields you would like to display
                         within this Customizer's section.
@@ -16,7 +16,7 @@
         </div>
 
         <div v-if="showCreateForm">
-            <create-field-form :id="id"></create-field-form>
+            <create-field-form :section-id="sectionId" :theme-id="themeId"></create-field-form>
         </div>
 
         <field-list></field-list>
@@ -31,6 +31,10 @@
             }
         },
 
-        props: ['theme', 'section', 'id'],
+        props: ['themeId', 'themeName', 'sectionId', 'sectionName'],
+
+        mounted: function() {
+            console.log(this.themeId);
+        }
     }
 </script>

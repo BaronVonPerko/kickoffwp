@@ -10,4 +10,8 @@ class Theme extends Model {
 	public function scopeUser( $query, $userid ) {
 		return $query->where( 'user_id', $userid );
 	}
+
+	public function sections() {
+		return $this->hasMany('\App\Section');
+	}
 }

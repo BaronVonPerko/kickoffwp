@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <fields theme="{{$class->theme_name}}" section="{{$class->section_name}}" id="{{$class->id}}"></fields>
+    <fields theme-id="{{$theme->id}}"
+            theme-name="{{$theme->name}}"
+            section-id="{{$section->id}}"
+            section-name="{{$section->name}}">
+    </fields>
 @endsection

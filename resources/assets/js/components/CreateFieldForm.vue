@@ -20,7 +20,7 @@
 
 <script type="text/babel">
     module.exports = {
-        props: ['id'],
+        props: ['themeId', 'sectionId'],
 
         data: function() {
             return {
@@ -31,7 +31,7 @@
 
         methods: {
             add: function() {
-                axios.post('/fields/' + this.id + '/create', {
+                axios.post('/theme/' + this.themeId + '/sections/' + this.sectionId + '/fields', {
                     'label': this.newLabel,
                     'default': this.newDefault,
                 })
