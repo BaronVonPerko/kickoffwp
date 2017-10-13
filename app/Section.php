@@ -10,4 +10,8 @@ class Section extends Model {
 	function scopeTheme( $query, $themeId ) {
 		return $query->where( 'theme_id', $themeId );
 	}
+
+	function fields() {
+		return $this->hasMany("\App\CustomizerField");
+	}
 }

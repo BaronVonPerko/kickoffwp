@@ -92,6 +92,9 @@ class ThemeController extends Controller
         $theme = Theme::find($id);
 
         if($theme->user_id == null || $theme->user_id == Auth::id()) {
+        	foreach($theme->sections as $section) {
+        		$section->fields()->delete();
+	        }
         	$theme->sections()->delete();
         	$theme->delete();
         	return response()->json(["success" => true]);
