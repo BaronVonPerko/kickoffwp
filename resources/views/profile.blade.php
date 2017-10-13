@@ -61,10 +61,7 @@
                             </ul>
                         </div>
                         <div class="card-action">
-                            <a href="/theme/{{$theme->id}}/sections" class="black-text">Sections</a>
-                            <a href="#" class="black-text">Edit</a>
-                            <a href="#" class="black-text">Copy</a>
-                            <a href="#" class="black-text">Delete</a>
+                            <theme-card-buttons :id="{{$theme->id}}"></theme-card-buttons>
                         </div>
                     </div>
                 </div>

@@ -32,9 +32,5 @@
         },
 
         props: ['themeId', 'themeName', 'sectionId', 'sectionName'],
-
-        mounted: function() {
-            console.log(this.themeId);
-        }
     }
 </script>

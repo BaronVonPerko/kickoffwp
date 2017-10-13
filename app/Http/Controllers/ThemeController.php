@@ -89,6 +89,14 @@ class ThemeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $theme = Theme::find($id);
+
+        if($theme->user_id == null || $theme->user_id == Auth::id()) {
+        	$theme->delete();
+        	return response()->json(["success" => true]);
+        } else {
+	        return response()->json(["success" => false, "message" => "Invalid Theme ID"]);
+        }
+
     }
 }
