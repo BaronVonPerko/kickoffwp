@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Theme;
 use Illuminate\Http\Request;
 
 class ShowProfile extends Controller
@@ -11,7 +12,7 @@ class ShowProfile extends Controller
 	    $themes = null;
 
 	    if($user != null) {
-		    $themes = \App\Theme::User($user->id)->get();
+		    $themes = Theme::User($user->id)->with('sections')->get();
 	    }
 
 	    return view('profile', ['themes' => $themes]);
