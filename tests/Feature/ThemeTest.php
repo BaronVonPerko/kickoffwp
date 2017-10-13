@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Section;
 use App\Theme;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -64,10 +65,23 @@ class ThemeTest extends TestCase {
 
 		$anotherUser = factory( User::class )->create();
 
-		$this->actingAs($anotherUser)
-			->delete("/theme/$theme->id")
-			->assertJson([ "success" => false, "message" => "Invalid Theme ID" ]);
+		$this->actingAs( $anotherUser )
+		     ->delete( "/theme/$theme->id" )
+		     ->assertJson( [ "success" => false, "message" => "Invalid Theme ID" ] );
 
-		$this->assertNotNull($theme->fresh());
+		$this->assertNotNull( $theme->fresh() );
+	}
+
+	/** @test */
+	function deleting_a_theme_also_deletes_sections() {
+		$theme = factory(Theme::class)->create();
+		$sections = factory(Section::class, 3)->create(["theme_id" => $theme->id]);
+
+		$this->delete("/theme/$theme->id");
+
+		$this->assertNull($theme->fresh());
+		$this->assertNull($sections->fresh()[0]);
+		$this->assertNull($sections->fresh()[1]);
+		$this->assertNull($sections->fresh()[2]);
 	}
 }
