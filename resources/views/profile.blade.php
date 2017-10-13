@@ -23,7 +23,7 @@
                     </p>
                 </div>
                 <div class="card-action">
-                    <a href="/theme/new" class="black-text">Create a new theme</a>
+                    <a href="/theme/create" class="black-text">Create a new theme</a>
                 </div>
             </div>
         </div>

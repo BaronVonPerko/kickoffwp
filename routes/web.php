@@ -30,10 +30,7 @@ Route::get('/profile', 'ShowProfile');
 /**
  * Themes
  */
-Route::get('/theme/new', function() {
-	return view('newTheme');
-});
-Route::post('/theme/new', 'CreateNewTheme');
+Route::resource('theme', 'ThemeController');
 
 /**
  * Sections

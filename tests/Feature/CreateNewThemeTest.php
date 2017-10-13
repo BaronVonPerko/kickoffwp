@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Theme;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
@@ -14,12 +15,12 @@ class CreateNewThemeTest extends TestCase
     /** @test */
     public function it_can_save_a_new_theme()
     {
-	    $count = \App\Theme::where('name', 'Test Theme')->count();
+	    $count = Theme::where('name', 'Test Theme')->count();
 	    $this->assertEquals(0, $count);
 
-        $this->post('/theme/new', ["name" => "Test Theme"]);
+        $this->post('/theme', ["name" => "Test Theme"]);
 
-        $count = \App\Theme::where('name', 'Test Theme')->count();
+        $count = Theme::where('name', 'Test Theme')->count();
         $this->assertEquals(1, $count);
     }
 }

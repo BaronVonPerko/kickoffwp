@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <form class="row" action="/theme/new" method="post">
+    <form class="row" action="/theme" method="post">
 
         {{ csrf_field() }}
 
