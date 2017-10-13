@@ -42,31 +42,7 @@
                     <h5>Continue working on your existing customizer classes</h5>
                 </div>
             </div>
-            <div class="row">
-            @foreach($themes as $theme)
-                <div class="col s12 m6">
-                    <div class="card green lighten-3 z-depth-3">
-                        <div class="card-content black-text">
-                            <span class="card-title">{{$theme->name}}</span>
-                            <ul class="row">
-                                @forelse($theme->sections as $section)
-                                    <li class="col s6">
-                                        <a href="/theme/{{$theme->id}}/sections/{{$section->id}}/fields">
-                                            {{$section->name}}
-                                        </a>
-                                    </li>
-                                @empty
-                                    <li class="col s12"><em>No sections created</em></li>
-                                @endforelse
-                            </ul>
-                        </div>
-                        <div class="card-action">
-                            <theme-card-buttons :id="{{$theme->id}}"></theme-card-buttons>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-            </div>
+            <theme-list :themes="{{$themes}}"></theme-list>
         @endif
     @endauth
 

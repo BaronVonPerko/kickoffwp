@@ -11,7 +11,13 @@
 
     module.exports = {
 
-        props: ["id"],
+        props: ["theme", "markDeleted"],
+
+        data: function() {
+            return {
+                themeId: this.theme.id,
+            }
+        },
 
         computed: {
             sectionsLink: function() {
@@ -21,7 +27,10 @@
 
         methods: {
             deleteTheme: function() {
-                axios.delete('/theme/' + this.id);
+                axios.delete('/theme/' + this.themeId)
+                    .then( response => {
+                        if(response.data.success) this.markDeleted();
+                    });
             },
         },
 
