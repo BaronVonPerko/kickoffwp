@@ -38,9 +38,7 @@ Route::post('/theme/new', 'CreateNewTheme');
 /**
  * Sections
  */
-Route::get('/theme/{id}/sections', function($id) {
-	return view('sections', ["id" => $id]);
-});
+Route::get('/theme/{id}/sections', 'ShowSections');
 Route::post('/theme/{id}/sections', 'CreateNewSection');
 
 
