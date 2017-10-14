@@ -19,7 +19,6 @@ Vue.component('welcomeEmailSignup', require('./components/WelcomeEmailSignup.vue
 Vue.component('fields', require('./components/Fields.vue'));
 Vue.component('createFieldForm', require('./components/CreateFieldForm.vue'));
 Vue.component('fieldList', require('./components/FieldList.vue'));
-Vue.component('themeCardButtons', require('./components/ThemeCardButtons.vue'));
 Vue.component('themeList', require('./components/ThemeList.vue'));
 Vue.component('themeCard', require('./components/ThemeCard.vue'));
 

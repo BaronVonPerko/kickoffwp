@@ -12,7 +12,11 @@
             </ul>
         </div>
         <div class="card-action">
-            <theme-card-buttons :theme="theme" :mark-deleted="markDeleted"></theme-card-buttons>
+            <!--<theme-card-buttons :theme="theme" :mark-deleted="markDeleted"></theme-card-buttons>-->
+            <a :href="sectionsLink" class="btn">Sections</a>
+            <a href="#" class="btn-floating"><i class="material-icons">edit</i></a>
+            <a href="#" class="btn-floating"><i class="material-icons">content_copy</i></a>
+            <a @click="deleteTheme()" class="btn-floating"><i class="material-icons">delete</i></a>
         </div>
     </div>
 </template>
@@ -28,13 +32,22 @@
             }
         },
 
+        computed: {
+            sectionsLink: function() {
+                return "/theme/" + this.id + "/sections";
+            },
+        },
+
         methods: {
             sectionLink: function(section) {
                 return "/theme/" + this.theme.id + "/sections/" + section.id + "/fields";
             },
 
-            markDeleted: function() {
-                this.isDeleted = true;
+            deleteTheme: function() {
+                axios.delete('/theme/' + this.theme.id)
+                    .then( response => {
+                        if(response.data.success) this.isDeleted = true;
+                    });
             },
         }
 
