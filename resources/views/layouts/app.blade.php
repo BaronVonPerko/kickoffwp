@@ -68,7 +68,7 @@
         <div class="row">
             <div class="col s12">
                 <h5 class="white-text">KickoffWP</h5>
-                <p>&copy; 2017 Chris Perko</p>
+                <p>&copy; 2017 <a href="http://ChrisPerko.net" target="_blank" class="white-text">Chris Perko</a></p>
             </div>
         </div>
     </div>

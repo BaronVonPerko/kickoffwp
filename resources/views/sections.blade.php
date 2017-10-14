@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    
     <div class="row">
         <div class="col s12 m6 offset-m3">
             <div class="card blue darken-1 z-depth-3">

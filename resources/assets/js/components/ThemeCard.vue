@@ -47,7 +47,7 @@
 
         computed: {
             sectionsLink: function () {
-                return "/theme/" + this.id + "/sections";
+                return "/theme/" + this.theme.id + "/sections";
             },
         },
 
