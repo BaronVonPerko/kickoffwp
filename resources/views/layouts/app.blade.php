@@ -59,6 +59,8 @@
     <div class="container">
         @yield('content')
     </div>
+
+    <toast message="{{ session('flash') }}"></toast>
 </main>
 
 <footer class="page-footer orange">

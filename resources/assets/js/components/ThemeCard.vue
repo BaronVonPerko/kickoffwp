@@ -8,7 +8,7 @@
                     <button @click="saveChanges()" class="btn">Save Changes</button>
                 </form>
             </span>
-            <ul class="row">
+            <ul class="row" v-if="!editing">
                 <li class="col s6" v-for="section in theme.sections">
                     <a :href="sectionLink(section)">
                         {{section.name}}
@@ -65,7 +65,12 @@
             saveChanges: function () {
                 axios.put('/theme/' + this.theme.id, {name: this.theme.name})
                     .then(response => {
-                        if (response.data.success) this.editing = false;
+                        if (response.data.success) {
+                            this.editing = false;
+                            toast('Theme Updated');
+                        } else {
+                            toast(response.data.message, "error");
+                        }
                     });
             },
         }
