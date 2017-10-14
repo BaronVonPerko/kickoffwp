@@ -35,8 +35,8 @@ Route::resource('theme', 'ThemeController');
 /**
  * Sections
  */
-Route::get('/theme/{id}/sections', 'ShowSections');
-Route::post('/theme/{id}/sections', 'CreateNewSection');
+Route::get('/theme/{id}/sections', 'SectionController@index');
+Route::post('/theme/{id}/sections', 'SectionController@store');
 
 
 /**
