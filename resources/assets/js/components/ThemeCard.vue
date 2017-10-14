@@ -54,7 +54,12 @@
             deleteTheme: function () {
                 axios.delete('/theme/' + this.theme.id)
                     .then(response => {
-                        if (response.data.success) this.isDeleted = true;
+                        if (response.data.success) {
+                            this.isDeleted = true;
+                            toast('Theme Deleted');
+                        } else {
+                            toast(response.data.message, 'red');
+                        }
                     });
             },
 
