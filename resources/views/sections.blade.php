@@ -52,23 +52,7 @@
             </div>
         </div>
 
-        <div class="row">
-            @foreach($sections as $section)
-            <div class="col s12 l6">
-                <div class="card green lighten-3 z-depth-3">
-                    <div class="card-content">
-                        <span class="card-title">{{$section->name}}</span>
-                    </div>
-                    <div class="card-action">
-                        <a href="/theme/{{$themeId}}/sections/{{$section->id}}/fields" class="black-text">Fields</a>
-                        <a href="#" class="black-text">Edit</a>
-                        <a href="#" class="black-text">Copy</a>
-                        <a href="#" class="black-text">Delete</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
+        <section-list :sections="{{$sections}}" :theme-id="{{$themeId}}"></section-list>
 
     @endif
 

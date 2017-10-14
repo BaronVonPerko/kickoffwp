@@ -22,6 +22,8 @@ Vue.component('createFieldForm', require('./components/CreateFieldForm.vue'));
 Vue.component('fieldList', require('./components/FieldList.vue'));
 Vue.component('themeList', require('./components/ThemeList.vue'));
 Vue.component('themeCard', require('./components/ThemeCard.vue'));
+Vue.component('sectionList', require('./components/SectionList.vue'));
+Vue.component('sectionCard', require('./components/SectionCard.vue'));
 
 const app = new Vue({
     el: '#app'

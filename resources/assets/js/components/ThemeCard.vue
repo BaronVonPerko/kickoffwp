@@ -39,9 +39,9 @@
 
         data: function () {
             return {
-                "isDeleted": false,
-                "editing": false,
-                "deleting": false,
+                isDeleted: false,
+                editing: false,
+                deleting: false,
             };
         },
 
