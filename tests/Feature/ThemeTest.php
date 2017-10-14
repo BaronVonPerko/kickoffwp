@@ -103,4 +103,55 @@ class ThemeTest extends TestCase {
 		$this->assertNull( $fields1->fresh()[1] );
 		$this->assertNull( $fields2->fresh() );
 	}
+
+	/** @test */
+	function it_can_edit_a_theme_name() {
+		$theme = factory( Theme::class )->create();
+
+		$this->put( "/theme/$theme->id", [ "name" => "Updated Name" ] )
+		     ->assertStatus( 200 )
+		     ->assertJson( [ "success" => true ] );
+
+		$this->assertEquals( "Updated Name", $theme->fresh()->name );
+	}
+
+	/** @test */
+	function anonymous_users_cannot_update_user_themes() {
+		$user = factory(User::class)->create();
+		$theme = factory(Theme::class)->create(["user_id" => $user->id]);
+
+		$this->put("/theme/$theme->id", ["name" => "Something"])
+			->assertStatus(200)
+			->assertJson(["success" => false, "message" => "Invalid Theme ID"]);
+
+		$this->assertNotEquals("Something", $theme->fresh()->name);
+	}
+
+	/** @test */
+	function a_user_cannot_update_another_user_theme() {
+		$user = factory(User::class)->create();
+		$theme = factory(Theme::class)->create(["user_id" => $user->id]);
+
+		$anotherUser = factory(User::class)->create();
+
+		$this->actingAs($anotherUser)
+		     ->put("/theme/$theme->id", ["name" => "Something"])
+		     ->assertStatus(200)
+		     ->assertJson(["success" => false, "message" => "Invalid Theme ID"]);
+
+		$this->assertNotEquals("Something", $theme->fresh()->name);
+	}
+
+	/** @test */
+	function a_user_can_update_their_own_theme() {
+		$user = factory(User::class)->create();
+		$theme = factory(Theme::class)->create(["user_id" => $user->id]);
+
+		$this->actingAs($user)
+		     ->put("/theme/$theme->id", ["name" => "Something"])
+		     ->assertStatus(200)
+		     ->assertJson(["success" => true]);
+
+		$this->assertEquals("Something", $theme->fresh()->name);
+	}
 }

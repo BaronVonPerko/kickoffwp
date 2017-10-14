@@ -78,7 +78,16 @@ class ThemeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+	    $name = $request->get( 'name' );
+
+	    $theme = Theme::find($id);
+
+	    if($theme->user_id == null || $theme->user_id == Auth::id()) {
+		    $theme->update( [ "name" => $name ] );
+		    return response()->json(["success" => true]);
+	    }
+
+        return response()->json(["success" => false, "message" => "Invalid Theme ID"]);
     }
 
     /**
