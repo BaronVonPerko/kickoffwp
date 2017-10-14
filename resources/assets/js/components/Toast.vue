@@ -1,10 +1,11 @@
 <template>
-    <div class="alert alert-flash"
-         :class="'alert-'+level"
-         role="alert"
-         v-show="show"
-         v-text="body">
-    </div>
+    <transition name="fade">
+        <div class="card z-depth-5 alert-flash" v-show="show" :class="level" role="alert">
+            <div class="card-content black-text">
+                <span class="card-title">{{body}}</span>
+            </div>
+        </div>
+    </transition>
 </template>
 
 <script>
@@ -13,7 +14,7 @@
         data() {
             return {
                 body: this.message,
-                level: 'success',
+                level: 'green',
                 show: false
             }
         },
@@ -37,7 +38,7 @@
             hide() {
                 setTimeout(() => {
                     this.show = false;
-                }, 3000);
+                }, 2000);
             }
         }
     };
@@ -47,6 +48,17 @@
     .alert-flash {
         position: fixed;
         right: 25px;
-        bottom: 25px;
+        top: 25px;
+        opacity: 1;
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: all 500ms ease-in-out;
+    }
+    .fade-enter {
+        opacity: 0
+    }
+    .fade-leave-to {
+        transform: translateX(1000px);
     }
 </style>

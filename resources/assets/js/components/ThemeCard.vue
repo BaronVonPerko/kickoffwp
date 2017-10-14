@@ -69,7 +69,7 @@
                             this.editing = false;
                             toast('Theme Updated');
                         } else {
-                            toast(response.data.message, "error");
+                            toast(response.data.message, "red");
                         }
                     });
             },

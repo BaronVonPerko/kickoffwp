@@ -41,7 +41,7 @@ window.Vue = require('vue');
 
 window.events = new Vue();
 
-window.toast = function (message, level = 'success') {
+window.toast = function (message, level = 'green') {
     window.events.$emit('toast', { message, level });
 }
 
