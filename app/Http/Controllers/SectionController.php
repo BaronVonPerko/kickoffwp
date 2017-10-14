@@ -84,9 +84,19 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $themeId, $id)
     {
-        //
+        $section = Section::find($id);
+
+	    $name = $request->get( 'name' );
+
+	    if($section->theme->user_id == null || $section->theme->user_id == Auth::id()) {
+		    $section->update( [ "name" => $name ] );
+
+		    return response()->json( [ "success" => true ] );
+	    } else {
+	    	return response()->json(["success" => false, "message" => "Invalid Section ID"]);
+	    }
     }
 
     /**

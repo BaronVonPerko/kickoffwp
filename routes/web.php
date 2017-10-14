@@ -37,6 +37,7 @@ Route::resource('theme', 'ThemeController');
  */
 Route::get('/theme/{id}/sections', 'SectionController@index');
 Route::post('/theme/{id}/sections', 'SectionController@store');
+Route::put('/theme/{themeId}/sections/{id}', 'SectionController@update');
 
 
 /**

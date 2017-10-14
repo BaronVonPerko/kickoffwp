@@ -14,4 +14,8 @@ class Section extends Model {
 	function fields() {
 		return $this->hasMany("\App\CustomizerField");
 	}
+
+	function theme() {
+		return $this->belongsTo("\App\Theme");
+	}
 }
