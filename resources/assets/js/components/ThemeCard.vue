@@ -18,11 +18,15 @@
             </ul>
         </div>
         <div class="card-action">
-            <div v-if="!editing">
+            <div v-if="!editing && !deleting">
                 <a :href="sectionsLink" class="btn">Sections</a>
                 <a @click="edit()" class="btn-floating"><i class="material-icons">edit</i></a>
                 <a href="#" class="btn-floating"><i class="material-icons">content_copy</i></a>
-                <a @click="deleteTheme()" class="btn-floating"><i class="material-icons">delete</i></a>
+                <a @click="confirmDelete()" class="btn-floating"><i class="material-icons">delete</i></a>
+            </div>
+            <div v-if="deleting">
+                <button class="btn red" @click="deleteTheme()">Delete</button>
+                <button class="btn" @click="cancelDelete()">Cancel</button>
             </div>
         </div>
     </div>
@@ -37,6 +41,7 @@
             return {
                 "isDeleted": false,
                 "editing": false,
+                "deleting": false,
             };
         },
 
@@ -51,6 +56,14 @@
                 return "/theme/" + this.theme.id + "/sections/" + section.id + "/fields";
             },
 
+            confirmDelete: function() {
+                this.deleting = true;
+            },
+
+            cancelDelete: function() {
+                this.deleting = false;
+            },
+
             deleteTheme: function () {
                 axios.delete('/theme/' + this.theme.id)
                     .then(response => {
@@ -60,6 +73,8 @@
                         } else {
                             toast(response.data.message, 'red');
                         }
+
+                        this.deleting = false;
                     });
             },
 
