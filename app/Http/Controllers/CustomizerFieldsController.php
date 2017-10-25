@@ -26,7 +26,7 @@ class CustomizerFieldsController extends Controller {
 
 		$section = Section::find( $sectionId );
 
-		$fields = CustomizerField::Section( $sectionId )->get();
+		$fields = $section->fields()->get();
 
 		return view( 'fields', [ 'theme' => $theme, 'section' => $section, 'fields' => $fields ] );
 	}

@@ -19,7 +19,7 @@
             <create-field-form :section-id="sectionId" :theme-id="themeId"></create-field-form>
         </div>
 
-        <field-list></field-list>
+        <field-list :fields="fields"></field-list>
     </div>
 </template>
 
@@ -31,6 +31,6 @@
             }
         },
 
-        props: ['themeId', 'themeName', 'sectionId', 'sectionName'],
+        props: ['themeId', 'themeName', 'sectionId', 'sectionName', 'fields'],
     }
 </script>
