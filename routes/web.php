@@ -43,5 +43,6 @@ Route::put('/theme/{themeId}/sections/{id}', 'SectionController@update');
 /**
  * Fields
  */
-Route::get('/theme/{themeId}/sections/{sectionId}/fields', 'CustomizerFieldsController@showFields');
-Route::post('/theme/{themeId}/sections/{sectionId}/fields', 'CustomizerFieldsController@create');
+Route::prefix('/theme/{themeId}/sections/{sectionId}')->group(function() {
+	Route::resource('fields', 'FieldsController');
+});
