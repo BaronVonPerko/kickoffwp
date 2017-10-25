@@ -11,7 +11,7 @@
                     <label for="newDefault">Default</label>
                 </div>
                 <div class="col s12 m2">
-                    <button class="btn-large" @click="add()" :disabled="submitting || !newLabel || !newDefault">Add</button>
+                    <button class="btn-large" @click="add()" :disabled="submitting || !newLabel">Add</button>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
 
         methods: {
             add: function() {
-                if(!this.newLabel || !this.newDefault) return;
+                if(!this.newLabel) return;
 
                 this.submitting = true;
 

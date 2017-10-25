@@ -11,7 +11,7 @@
             <tbody>
             <tr v-for="field in fields">
                 <td>{{field.label}}</td>
-                <td>{{field.default}}</td>
+                <td>{{field.default || 'null'}}</td>
                 <td>buttons</td>
             </tr>
             </tbody>

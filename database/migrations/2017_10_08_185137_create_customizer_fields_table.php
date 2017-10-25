@@ -16,7 +16,7 @@ class CreateCustomizerFieldsTable extends Migration
         Schema::create('customizer_fields', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label');
-            $table->string('default');
+            $table->string('default')->nullable();
             $table->integer('class_id');
             $table->timestamps();
         });
