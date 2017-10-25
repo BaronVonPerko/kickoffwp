@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <div class="card pink darken-1 z-depth-3">
+            <div class="card blue darken-1 z-depth-3">
                 <div class="card-content white-text">
                     <span class="card-title">Fields for {{this.themeName}} {{this.sectionName}}</span>
                     <p>
@@ -16,10 +16,10 @@
         </div>
 
         <div v-if="showCreateForm">
-            <create-field-form :section-id="sectionId" :theme-id="themeId"></create-field-form>
+            <create-field-form :section-id="sectionId" :theme-id="themeId" :newFieldCreated="newFieldCreated"></create-field-form>
         </div>
 
-        <field-list :fields="fields"></field-list>
+        <field-list :fields="fieldList"></field-list>
     </div>
 </template>
 
@@ -28,9 +28,17 @@
         data: function() {
             return {
                 showCreateForm: false,
+                fieldList: JSON.parse(this.fields),
             }
         },
 
         props: ['themeId', 'themeName', 'sectionId', 'sectionName', 'fields'],
+
+        methods: {
+            newFieldCreated: function(field) {
+                this.fieldList.push(field);
+                this.showCreateForm = false;
+            },
+        },
     }
 </script>
