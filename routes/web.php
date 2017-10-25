@@ -35,9 +35,9 @@ Route::resource('theme', 'ThemeController');
 /**
  * Sections
  */
-Route::get('/theme/{id}/sections', 'SectionController@index');
-Route::post('/theme/{id}/sections', 'SectionController@store');
-Route::put('/theme/{themeId}/sections/{id}', 'SectionController@update');
+Route::prefix('/theme/{id}')->group(function() {
+	Route::resource('sections', 'SectionController');
+});
 
 
 /**
