@@ -8,13 +8,13 @@
     </transition>
 </template>
 
-<script>
-    export default {
+<script type="text/babel">
+    module.exports = {
         props: ['message'],
         data() {
             return {
                 body: this.message,
-                level: 'green',
+                level: 'light-green lighten-s',
                 show: false
             }
         },
