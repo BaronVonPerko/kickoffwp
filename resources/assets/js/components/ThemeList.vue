@@ -1,7 +1,8 @@
 <template>
-    <div class="row">
-        <div class="col s12 m6" v-for="theme in themes">
+    <div>
+        <div v-for="theme in themes">
             <theme-card :theme="theme"></theme-card>
+            <br>
         </div>
     </div>
 </template>

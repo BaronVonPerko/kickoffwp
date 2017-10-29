@@ -1,34 +1,39 @@
 <template>
-    <div class="card green lighten-3 z-depth-3" v-if="!isDeleted">
-        <div class="card-content black-text">
-            <span class="card-title">
-                <span v-if="!editing">{{theme.name}}</span>
-                <form v-if="editing" @submit.prevent="">
-                    <input type="text" v-if="editing" v-model="theme.name">
-                    <button @click="saveChanges()" class="btn">Save Changes</button>
-                </form>
-            </span>
-            <ul class="row" v-if="!editing">
-                <li class="col s6" v-for="section in theme.sections">
+    <div class="card" v-if="!isDeleted">
+        <span class="card-header">
+            <span v-if="!editing" class="card-header-title">{{theme.name}}</span>
+            <form class="column" v-if="editing" @submit.prevent="">
+                <div class="field">
+                    <div class="control">
+                        <input class="input" type="text" v-if="editing" v-model="theme.name">
+                    </div>
+                </div>
+            </form>
+        </span>
+        <div class="card-content">
+            <div class="columns is-multiline">
+                <div v-for="section in theme.sections" class="column is-4">
                     <a :href="sectionLink(section)">
                         {{section.name}}
                     </a>
-                </li>
-                <li class="col s12" v-if="!theme.sections.length"><em>No sections created</em></li>
-            </ul>
-        </div>
-        <div class="card-action">
-            <div v-if="!editing && !deleting">
-                <a :href="sectionsLink" class="btn">Sections</a>
-                <a @click="edit()" class="btn-floating"><i class="material-icons">edit</i></a>
-                <a href="#" class="btn-floating"><i class="material-icons">content_copy</i></a>
-                <a @click="confirmDelete()" class="btn-floating"><i class="material-icons">delete</i></a>
+                </div>
             </div>
-            <div v-if="deleting">
-                <button class="btn red" @click="deleteTheme()">Delete</button>
-                <button class="btn" @click="cancelDelete()">Cancel</button>
-            </div>
+            <div class="has-text-centered" v-if="!theme.sections.length"><em>No sections created</em></div>
         </div>
+        <footer class="card-footer">
+            <a v-if="!deleting && !editing" :href="sectionsLink" class="is-primary card-footer-item">Add/Edit Sections</a>
+            <a v-if="!deleting && !editing" @click="edit()" class="is-primary card-footer-item"><i
+                    class="material-icons">edit</i></a>
+            <a v-if="!deleting && !editing" href="#" class="is-primary card-footer-item"><i class="material-icons">content_copy</i></a>
+            <a v-if="!deleting && !editing" @click="confirmDelete()" class="is-primary card-footer-item"><i class="material-icons">delete</i></a>
+
+            <a v-if="deleting && !editing" class="card-footer-item" @click="deleteTheme()">Delete</a>
+            <a v-if="deleting && !editing" class="card-footer-item" @click="cancelDelete()">Cancel</a>
+
+            <a v-if="editing" class="card-footer-item" @click="saveChanges()">
+                Save Changes
+            </a>
+        </footer>
     </div>
 </template>
 
@@ -56,11 +61,11 @@
                 return "/theme/" + this.theme.id + "/sections/" + section.id + "/fields";
             },
 
-            confirmDelete: function() {
+            confirmDelete: function () {
                 this.deleting = true;
             },
 
-            cancelDelete: function() {
+            cancelDelete: function () {
                 this.deleting = false;
             },
 

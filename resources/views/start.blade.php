@@ -3,47 +3,51 @@
 @section('content')
 
     @auth
-        <div class="row">
-            <div class="col sm12">
-                <h5>Welcome, {{Auth::user()->name}}!</h5>
+        <div class="content">
+            <div class="column has-text-centered">
+                <h1 class="title">Welcome, {{Auth::user()->name}}!</h1>
             </div>
         </div>
-    @else
-        @include('profile.anonymousCard')
     @endauth
 
-    <div class="row">
-        <div class="col s12">
-            <div class="card orange darken-1 z-depth-3">
-                <div class="card-content white-text">
-                    <span class="card-title">Ready to get started?</span>
-                    <p>
-                        Create a theme to manage all of your customizer files.
-                        Don't worry, the files can easily be copied to other themes later!
-                    </p>
-                </div>
-                <div class="card-action">
-                    <a href="/theme/create" class="black-text">Create a new theme</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="content">
+        <div class="columns">
 
-    @auth
-        @if($themes->count() == 0)
-        <div class="row">
-            <div class="col s12 center-align">
-                <em>You don't have anything saved.</em>
-            </div>
-        </div>
-        @else
-            <div class="row">
-                <div class="col sm12">
-                    <h5>Continue working on your existing customizer classes</h5>
+            @guest
+            @include('profile.anonymousCard')
+            @endguest
+
+            <div class="column">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-header-title">Ready to get started?</span>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            Create a theme to manage all of your customizer files.
+                            Don't worry, the files can easily be copied to other themes later!
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/theme/create" class="button is-primary card-footer-item">Create a new theme</a>
+                    </div>
                 </div>
             </div>
-            <theme-list :themes="{{$themes}}"></theme-list>
-        @endif
-    @endauth
 
+            @auth
+                <div class="column is-two-thirds">
+                    @if($themes->count() == 0)
+                        <em>You don't have anything saved.</em>
+                    @else
+                        <div>
+                            <span class="card-header-title">Continue working on your existing customizer classes</span>
+                        </div>
+                        <div class="">
+                            <theme-list :themes="{{$themes}}"></theme-list>
+                        </div>
+                    @endif
+                </div>
+            @endauth
+
+        </div>
 @endsection
