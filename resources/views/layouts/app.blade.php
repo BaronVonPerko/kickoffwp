@@ -23,36 +23,19 @@
 <body>
 <main id="app">
 
-    <nav class="orange">
-        <div class="nav-wrapper">
-            <a href="/" class="brand-logo">KickoffWP</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                @auth
-                    <li class="{{ Request::is('profile') ? 'active' : '' }}">
-                        <a href="{{ url('/profile') }}">
-                            Profile
-                        </a>
-                    </li>
-                    <li><a href="/logout">Logout</a></li>
-                @else
-                    {{--<li><a href="{{ route('login') }}">Login</a></li>--}}
-                    {{--<li><a href="{{ route('register') }}">Register</a></li>--}}
-                @endauth
-            </ul>
-            <ul class="side-nav" id="mobile-demo">
-                @auth
-                    <li class="{{ Request::is('profile') ? 'active' : '' }}">
-                        <a href="{{ url('/profile') }}">
-                            Profile
-                        </a>
-                    </li>
-                    <li><a href="/logout">Logout</a></li>
-                @else
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
-                @endauth
-            </ul>
+    <nav class="navbar is-primary">
+        <div class="navbar-brand">
+            <a href="/" class="navbar-item">KickoffWP</a>
+
+            <button class="button navbar-burger">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-item navbar-end">
+                <a href="/profile">Profile</a>
+            </div>
         </div>
     </nav>
 
@@ -76,7 +59,6 @@
 </body>
 
 <!-- JS -->
-<script src="{{asset('js/materialize.min.js')}}"></script>
 <script src="{{asset('js/app.js')}}"></script>
 
 @if(env('APP_ENV') != 'local')
@@ -91,15 +73,32 @@
 </script>
 @endif
 
-
 <script>
-//    $(document).ready(function() {
-//        $('.button-collapse').sideNav();
-//    });
+    document.addEventListener('DOMContentLoaded', function () {
 
-$(document).ready(function() {
-    $('select').material_select();
-});
+        // Get all "navbar-burger" elements
+        var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+
+            // Add a click event on each of them
+            $navbarBurgers.forEach(function ($el) {
+                $el.addEventListener('click', function () {
+
+                    // Get the target from the "data-target" attribute
+                    var target = $el.dataset.target;
+                    var $target = document.getElementById(target);
+
+                    // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+                    $el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+
+                });
+            });
+        }
+
+    });
 </script>
 
 
