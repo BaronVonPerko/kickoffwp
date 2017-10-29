@@ -24,34 +24,35 @@
 <main id="app">
 
     <nav class="navbar is-primary">
-        <div class="navbar-brand">
-            <a href="/" class="navbar-item">KickoffWP</a>
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="/" class="navbar-item">KickoffWP</a>
 
-            <button class="button navbar-burger">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
+                <button class="button navbar-burger">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
 
-        <div class="navbar-menu">
-            <div class="navbar-item navbar-end">
-                <a href="/profile">Profile</a>
+            <div class="navbar-menu">
+                <div class="navbar-item navbar-end">
+                    <a href="/profile">Profile</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
         @yield('content')
     </div>
 
     <toast message="{{ session('flash') }}"></toast>
 </main>
 
-<footer class="page-footer orange">
+<footer class="footer">
     <div class="container">
-        <div class="row">
-            <div class="col s12">
-                <h5 class="white-text">KickoffWP</h5>
-                <p>&copy; 2017 <a href="http://ChrisPerko.net" target="_blank" class="white-text">Chris Perko</a></p>
+        <div class="content has-text-centered">
+            <strong>KickoffWP</strong>
+            <p>&copy; 2017 <a href="http://ChrisPerko.net" target="_blank" class="white-text">Chris Perko</a></p>
             </div>
         </div>
     </div>

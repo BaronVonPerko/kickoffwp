@@ -1,16 +1,25 @@
 <template>
     <div>
         <form v-on:submit.prevent="submit()" v-if="!submitSuccess">
-            <input v-model="email" type="email" required placeholder="Your Email Address">
-            <button class="waves-effect waves-light btn-large pulse z-depth-3">
-                Tell Me When It's Ready!
-            </button>
-            <p class="center-align">We will only email you when KickOff is ready to use.</p>
+            <div class="field">
+                <div class="control">
+                    <input v-model="email" type="email" class="input" required placeholder="Your Email Address">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control has-text-centered">
+                    <button class="button is-large is-primary">
+                        Tell Me When It's Ready!
+                    </button>
+                </div>
+            </div>
+
+            <p class="has-text-centered">We will only email you when KickoffWP is ready to use.</p>
         </form>
 
-        <div v-if="submitSuccess">
-            <h4 v-if="!error">Email Reminder Set!</h4>
-            <p v-if="error" class="red-text">An error occurred: {{error}}</p>
+        <div v-if="submitSuccess" class="notification has-text-centered">
+            <h4 v-if="!error" class="subtitle">Thank you! We will email you when KickoffWP is ready to use!</h4>
+            <p v-if="error" class="subtitle has-text-danger">An error occurred: {{error}}</p>
         </div>
     </div>
 </template>
