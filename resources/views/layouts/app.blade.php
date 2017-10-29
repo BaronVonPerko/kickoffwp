@@ -35,7 +35,7 @@
 
             <div class="navbar-menu">
                 <div class="navbar-item navbar-end">
-                    <a href="/profile">Profile</a>
+                    <a href="/start">Start</a>
                 </div>
             </div>
         </div>

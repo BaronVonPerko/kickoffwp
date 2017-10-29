@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Theme;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ShowProfile extends Controller
+class ShowStartPage extends Controller
 {
     public function __invoke() {
-	    $user = \Illuminate\Support\Facades\Auth::user();
+	    $user = Auth::user();
 	    $themes = null;
 
 	    if($user != null) {
 		    $themes = Theme::User($user->id)->with('sections')->get();
 	    }
 
-	    return view('profile', ['themes' => $themes]);
+	    return view('start', ['themes' => $themes]);
     }
 }

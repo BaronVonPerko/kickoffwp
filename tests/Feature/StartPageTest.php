@@ -7,12 +7,12 @@ use App\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-class ProfilePageTest extends TestCase {
+class StartPageTest extends TestCase {
 	use DatabaseTransactions;
 
 	/** @test */
 	public function it_has_a_page_that_is_accessible_by_everyone() {
-		$this->get( '/profile' )
+		$this->get( '/start' )
 		     ->assertStatus( 200 )
 		     ->assertSee( 'Ready to get started?' );
 	}
@@ -23,7 +23,7 @@ class ProfilePageTest extends TestCase {
 		$theme = factory( Theme::class )->create( [ 'user_id' => $user->id ] );
 
 		$this->actingAs( $user )
-		     ->get( '/profile' )
+		     ->get( '/start' )
 		     ->assertSee( $theme->name );
 	}
 }

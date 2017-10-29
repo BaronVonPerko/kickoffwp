@@ -25,7 +25,7 @@ Route::get('/logout', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/remindme', 'WelcomePageEmailSignupController@signup');
 
-Route::get('/profile', 'ShowProfile');
+Route::get('/start', 'ShowStartPage');
 
 /**
  * Themes
