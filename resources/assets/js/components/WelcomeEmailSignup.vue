@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <p class="has-text-centered">We will only email you when KickoffWP is ready to use.</p>
+            <p class="has-text-centered">We will only email you when KickoffWP is ready to use, and promise not to spam your inbox.</p>
         </form>
 
         <div v-if="submitSuccess" class="notification has-text-centered">
