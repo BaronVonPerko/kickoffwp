@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\CustomizerField;
+use App\FieldType;
 use App\Section;
 use App\Theme;
 use App\User;
@@ -54,6 +55,7 @@ class CustomizerFieldTest extends TestCase {
 		$this->post( "/theme/$section->theme_id/sections/$section->id/fields", [
 			"label"   => "My Field",
 			"default" => "#00ff00",
+			"type_id" => 1,
 		] )->assertStatus( 200 );
 
 		$savedField = CustomizerField::Section( $section->id )->first();
@@ -86,12 +88,22 @@ class CustomizerFieldTest extends TestCase {
 			"label"      => "My Field",
 			"default"    => "#00ff00",
 			"section_id" => $section->id,
+			"type_id"    => 1,
 		] )->assertStatus( 302 );
 
 		$this->actingAs( $user )->post( "/theme/$theme->id/sections/$section->id/fields", [
 			"label"      => "My Field",
 			"default"    => "#00ff00",
 			"section_id" => $section->id,
+			"type_id"    => 1,
 		] )->assertStatus( 200 );
+	}
+
+	function it_should_have_a_type() {
+		$type = FieldType::first();
+
+		$field = factory( CustomizerField::class )->create(['type_id' => $type->id]);
+
+		$this->assertEquals($type, $field->type);
 	}
 }
