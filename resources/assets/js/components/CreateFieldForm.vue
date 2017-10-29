@@ -2,6 +2,16 @@
     <div class="row">
         <div class="col s12">
             <form class="row">
+                <div class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected>Choose a Customizer Type</option>
+                        <option value="1">Generic</option>
+                        <option value="1">Color</option>
+                        <option value="1">Upload</option>
+                        <option value="1">Image</option>
+                    </select>
+                    <label>Type</label>
+                </div>
                 <div class="input-field col s12 m5">
                     <input type="text" id="newLabel" v-model="newLabel" placeholder="Label" :disabled="submitting" required autofocus>
                     <label for="newLabel">Label</label>
