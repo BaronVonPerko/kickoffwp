@@ -41,15 +41,9 @@
         </div>
     </nav>
 
-    @if(Request::url() == '/')
     <div class="container-fluid">
         @yield('content')
     </div>
-    @else
-    <div class="container">
-        @yield('content')
-    </div>
-    @endif
 
     <toast message="{{ session('flash') }}"></toast>
 </main>

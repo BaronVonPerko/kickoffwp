@@ -2,6 +2,7 @@
 
 @section('content')
 
+    <div class="container">
     @auth
         <div class="content">
             <div class="column has-text-centered">
@@ -50,4 +51,5 @@
             @endauth
 
         </div>
+    </div>
 @endsection

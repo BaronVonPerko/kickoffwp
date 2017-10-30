@@ -13,7 +13,7 @@
         <div class="card-content">
             <div class="columns is-multiline">
                 <div v-for="section in theme.sections" class="column is-4">
-                    <a :href="sectionLink(section)">
+                    <a :href="sectionLink(section)" class="box notification is-dark">
                         {{section.name}}
                     </a>
                 </div>
