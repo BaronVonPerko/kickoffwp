@@ -34,14 +34,10 @@
             </div>
 
             <div class="navbar-menu navbar-end">
-                <div class="navbar-item">
-                    <a href="/start">Start</a>
-                </div>
+                <a href="/start" class="navbar-item">Start</a>
 
                 @auth()
-                    <div class="navbar-item">
-                        <a href="/logout">Logout</a>
-                    </div>
+                    <a href="/logout" class="navbar-item">Logout</a>
                 @endauth
             </div>
         </div>
@@ -59,8 +55,8 @@
         <div class="content has-text-centered">
             <strong>KickoffWP</strong>
             <p>&copy; 2017 <a href="http://ChrisPerko.net" target="_blank" class="white-text">Chris Perko</a></p>
-            </div>
         </div>
+    </div>
     </div>
 </footer>
 </body>
@@ -69,15 +65,19 @@
 <script src="{{asset('js/app.js')}}"></script>
 
 @if(env('APP_ENV') != 'local')
-<!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-26651291-14"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26651291-14"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    gtag('config', 'UA-26651291-14');
-</script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-26651291-14');
+    </script>
 @endif
 
 <script>
