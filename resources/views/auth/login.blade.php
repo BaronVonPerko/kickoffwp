@@ -2,55 +2,70 @@
 
 @section('content')
 
-    <form action="{{route('login')}}" method="post" class="container">
-        <div class="row">
-            <div class="col s12">
+    <form action="{{route('login')}}" method="post" class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
 
-                <div class="card teal lighten-5">
-                    <div class="card-content">
-                        <span class="card-title">Login</span>
+                <div class="column is-6 is-offset-3">
+                    <h3 class="title has-text-grey">Login</h3>
 
-                            {{ csrf_field() }}
-                            <div class="input-field">
-                                <input type="email" placeholder="Email address" id="email" name="email" class="validate"
+                    <div class="box has-text-left">
+
+                        {{ csrf_field() }}
+
+                        <div class="field">
+                            <div class="label">Email</div>
+                            <div class="control has-icons-left">
+                                <input type="email" placeholder="Email address" id="email" name="email" class="input"
                                        value="{{ old('email') }}" required autofocus>
-                                <label for="email">Email Address</label>
+                                <span class="icon is-small is-left">
+                                    <i class="material-icons">email</i>
+                                </span>
                             </div>
+                        </div>
 
-                            @if ($errors->has('email'))
-                                <span class="red-text">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                            @endif
+                        @if ($errors->has('email'))
+                            <p class="help is-danger">{{ $errors->first('email') }}</p>
+                        @endif
 
-                            <div class="input-field">
-                                <input type="password" placeholder="Password" id="password" name="password" required>
-                                <label for="password">Password</label>
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input class="input" type="password" placeholder="Password" id="password" name="password" required>
+                                <span class="icon is-small-is-left">
+                                    <i class="material-icons">lock</i>
+                                </span>
                             </div>
+                        </div>
 
-                            @if ($errors->has('password'))
-                                <span class="red-text">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                            @endif
+                        @if ($errors->has('password'))
+                            <p class="help is-danger">{{ $errors->first('password') }}</p>
+                        @endif
 
-                            <p>
-                                <input type="checkbox" id="remember"
-                                       name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                <label for="remember">Remember Me</label>
-                            </p>
-
-                            <div>
-                                <button type="submit" class="btn waves">
-                                    Login
-                                    <i class="material-icons right">send</i>
-                                </button>
-
-                                <a class="btn-flat waves" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
+                        <div class="field">
+                            <div class="control">
+                                <label class="checkbox">
+                                    <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    Remember Me
+                                </label>
                             </div>
-                    </div>
+                        </div>
+
+                        <p class="field">
+                            <button type="submit" class="button is-block is-info is-large is-fullwidth">
+                                Login <i class="material-icons right">send</i>
+                            </button>
+                        </p>
+
+                        <p class="field">
+                            <a href="/register" class="button is-block is-grey">Register</a>
+                        </p>
+
+                    </div> <!-- end .box -->
+
+                    <p class="has-text-grey">
+                        <a href="/password/reset">Forgot Password</a>
+                    </p>
+
                 </div>
             </div>
         </div>
