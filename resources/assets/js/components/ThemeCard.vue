@@ -11,7 +11,7 @@
             </form>
         </span>
         <div class="card-content">
-            <div class="columns is-multiline">
+            <div class="columns is-multiline" v-if="!deleting">
                 <div v-for="section in theme.sections" class="column is-4">
                     <a :href="sectionLink(section)" class="box notification is-dark">
                         {{section.name}}
@@ -19,6 +19,7 @@
                 </div>
             </div>
             <div class="has-text-centered" v-if="!theme.sections.length"><em>No sections created</em></div>
+            <div v-if="deleting" class="has-text-centered subtitle">Are you sure you wish to delete this theme?</div>
         </div>
         <footer class="card-footer">
             <a v-if="!deleting && !editing" :href="sectionsLink" class="is-primary card-footer-item">Add/Edit Sections</a>
