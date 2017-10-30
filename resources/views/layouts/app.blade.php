@@ -26,7 +26,7 @@
     <nav class="navbar is-primary">
         <div class="container">
             <div class="navbar-brand">
-                <a href="/" class="navbar-item">KickoffWP</a>
+                <a href="/" class="navbar-item is-size-4">KickoffWP</a>
 
                 <button class="button navbar-burger">
                     <span></span><span></span><span></span>
