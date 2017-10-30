@@ -32,7 +32,7 @@
                             <div class="label">Password</div>
                             <div class="control has-icons-left">
                                 <input class="input" type="password" placeholder="Password" id="password" name="password" required>
-                                <span class="icon is-small-is-left">
+                                <span class="icon is-small is-left">
                                     <i class="material-icons">lock</i>
                                 </span>
                             </div>
@@ -52,7 +52,7 @@
                         </div>
 
                         <p class="field">
-                            <button type="submit" class="button is-block is-info is-large is-fullwidth">
+                            <button class="button is-block is-info is-large is-fullwidth">
                                 Login <i class="material-icons right">send</i>
                             </button>
                         </p>

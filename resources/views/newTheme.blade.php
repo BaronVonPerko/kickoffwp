@@ -2,34 +2,36 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col s12 m6 offset-m3">
-            <div class="card blue darken-1 z-depth-3">
-                <div class="card-content white-text">
-                    <span class="card-title">Create a new theme</span>
-                    <p>
-                        Input the name of your theme.  You will create the customizer sections in the next step.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <form class="hero is-fullheight" action="/theme" method="post">
+        <div class="hero-body">
+            <div class="container has-text-centered">
 
-    <form class="row" action="/theme" method="post">
+                <div class="column is-6 is-offset-3">
+                    <h3 class="title has-text-grey">Create New Theme</h3>
 
-        {{ csrf_field() }}
+                    <div class="box has-text-left">
 
-        <div class="col s12">
-            <div class="row">
-                <div class="input-field col s12 m6 offset-m3">
-                    <input type="text" placeholder="Theme Name" id="name" name="name" class="validate" required>
-                    <label for="theme_name">Theme Name</label>
-                </div>
-            </div>
+                        {{ csrf_field() }}
 
-            <div class="row">
-                <div class="col s12 m6 offset-m3 text-right">
-                    <button type="submit" class="waves-effect waves-light btn-large z-depth-3">Create</button>
+                        <div class="field">
+                            <div class="label">Email</div>
+                            <div class="control has-icons-left">
+                                <input placeholder="Theme Name" id="name" name="name" class="input" required>
+                                <span class="icon is-small is-left">
+                                    <i class="material-icons">star</i>
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <p class="field">
+                            <button class="button is-block is-info is-large is-fullwidth">
+                                Create
+                            </button>
+                        </p>
+
+
+                    </div>
                 </div>
             </div>
         </div>
