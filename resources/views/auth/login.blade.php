@@ -29,6 +29,7 @@
                         @endif
 
                         <div class="field">
+                            <div class="label">Password</div>
                             <div class="control has-icons-left">
                                 <input class="input" type="password" placeholder="Password" id="password" name="password" required>
                                 <span class="icon is-small-is-left">

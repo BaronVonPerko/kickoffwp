@@ -33,10 +33,16 @@
                 </button>
             </div>
 
-            <div class="navbar-menu">
-                <div class="navbar-item navbar-end">
+            <div class="navbar-menu navbar-end">
+                <div class="navbar-item">
                     <a href="/start">Start</a>
                 </div>
+
+                @auth()
+                    <div class="navbar-item">
+                        <a href="/logout">Logout</a>
+                    </div>
+                @endauth
             </div>
         </div>
     </nav>
