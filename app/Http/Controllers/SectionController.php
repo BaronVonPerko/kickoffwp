@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SectionRequest;
 use App\Section;
 use App\Theme;
 use Illuminate\Http\Request;
@@ -36,17 +37,12 @@ class SectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $themeId)
+    public function store(SectionRequest $request, $themeId)
     {
-	    $name = $request->get( 'name' );
 	    $theme = Theme::find($themeId);
 
 	    if($theme->user_id == null || $theme->user_id == Auth::id()) {
-		    $section = Section::create( [
-			    "name"     => $name,
-			    "theme_id" => $themeId
-		    ] );
-
+		    $section = Section::create( $request->validated() );
 		    return redirect( "/theme/$themeId/sections/$section->id/fields" );
 	    } else {
 	    	return response()->json(["success" => false, "message" => "Invalid Theme ID"]);
@@ -84,15 +80,12 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $themeId, $id)
+    public function update(SectionRequest $request, $themeId, $id)
     {
         $section = Section::find($id);
 
-	    $name = $request->get( 'name' );
-
 	    if($section->theme->user_id == null || $section->theme->user_id == Auth::id()) {
-		    $section->update( [ "name" => $name ] );
-
+		    $section->update( $request->validated() );
 		    return response()->json( [ "success" => true ] );
 	    } else {
 	    	return response()->json(["success" => false, "message" => "Invalid Section ID"]);
