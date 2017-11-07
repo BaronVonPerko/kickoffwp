@@ -14,9 +14,9 @@
                         {{ csrf_field() }}
 
                         <div class="field">
-                            <div class="label">Email</div>
+                            <div class="label">Theme Name</div>
                             <div class="control has-icons-left">
-                                <input placeholder="Theme Name" id="name" name="name" class="input" required>
+                                <input placeholder="Theme Name" id="name" name="name" class="input" required autofocus>
                                 <span class="icon is-small is-left">
                                     <i class="material-icons">star</i>
                                 </span>

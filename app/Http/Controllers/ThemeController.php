@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ThemeRequest;
 use App\Theme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,15 +35,15 @@ class ThemeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThemeRequest $request)
     {
-	    $theme = $request->get( 'name' );
 	    $user  = Auth::user();
 
-	    $theme = Theme::create( [
-		    "user_id" => $user != null ? $user->id : null,
-		    "name"    => $theme,
-	    ] );
+	    $theme = $request->validated();
+
+	    $theme["user_id"] = $user != null ? $user->id : null;
+
+	    $theme = Theme::create( $theme );
 
 	    return redirect( '/theme/' . $theme->id . '/sections' );
     }
@@ -76,14 +77,12 @@ class ThemeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ThemeRequest $request, $id)
     {
-	    $name = $request->get( 'name' );
-
 	    $theme = Theme::find($id);
 
 	    if($theme->user_id == null || $theme->user_id == Auth::id()) {
-		    $theme->update( [ "name" => $name ] );
+		    $theme->update( $request->validated() );
 		    return response()->json(["success" => true]);
 	    }
 
