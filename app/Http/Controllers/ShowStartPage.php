@@ -10,7 +10,7 @@ class ShowStartPage extends Controller
 {
     public function __invoke() {
 	    $user = Auth::user();
-	    $themes = null;
+	    $themes = collect([]);
 
 	    if($user != null) {
 		    $themes = Theme::User($user->id)->with('sections')->get();

@@ -42,7 +42,11 @@ class SectionController extends Controller
 	    $theme = Theme::find($themeId);
 
 	    if($theme->user_id == null || $theme->user_id == Auth::id()) {
-		    $section = Section::create( $request->validated() );
+	    	$data = $request->validated();
+	    	$data["theme_id"] = $themeId;
+
+		    $section = Section::create( $data );
+
 		    return redirect( "/theme/$themeId/sections/$section->id/fields" );
 	    } else {
 	    	return response()->json(["success" => false, "message" => "Invalid Theme ID"]);

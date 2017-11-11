@@ -25,7 +25,6 @@ class SectionRequest extends FormRequest
     {
         return [
 	        "name"     => "required",
-	        "theme_id" => "required",
         ];
     }
 }
