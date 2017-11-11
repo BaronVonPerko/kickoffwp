@@ -21,13 +21,23 @@
             <div class="column">
                 <div class="card">
                     <div class="card-header">
-                        <span class="card-header-title">Ready to get started?</span>
+                        @if($themes->count() == 0)
+                            <span class="card-header-title">Ready to get started?</span>
+                        @else
+                            <span class="card-header-title">Keep creating!</span>
+                        @endif
                     </div>
                     <div class="card-content">
+                        @if($themes->count() == 0)
                         <p>
                             Create a theme to manage all of your customizer files.
                             Don't worry, the files can easily be copied to other themes later!
                         </p>
+                        @else
+                            <p>
+                                Want to create more customizer files for your themes?
+                            </p>
+                        @endif
                     </div>
                     <div class="card-footer">
                         <a href="/theme/create" class="button is-primary card-footer-item">Create a new theme</a>
