@@ -41,21 +41,18 @@
 
     @if($sections->count() != 0)
 
-        <div class="row">
-            <div class="col s12">
-                <div class="card blue darken-1 z-depth-3">
-                    <div class="card-content white-text">
-                        <span class="card-title">Existing sections</span>
-                        <p>
-                            Below are the existing sections for your theme. Edit the section information, the fields,
-                            or even copy the section to another theme.
-                        </p>
+        <div class="container">
+            <div class="content">
+                <div class="card columns">
+                    <div class="column is-6">
+                        <section-list :sections="{{$sections}}" :theme-id="{{$themeId}}"></section-list>
+                    </div>
+                    <div class="column is-6">
+                        <h3 class="title has-text-grey">Existing Sections</h3>
                     </div>
                 </div>
             </div>
         </div>
-
-        <section-list :sections="{{$sections}}" :theme-id="{{$themeId}}"></section-list>
 
     @endif
 

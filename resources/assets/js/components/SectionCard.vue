@@ -1,20 +1,39 @@
 <template>
-    <div class="card green lighten-3 z-depth-3">
-        <div class="card-content">
-            <span v-if="!editing" class="card-title">{{section.name}}</span>
-            <form v-if="editing" @submit.prevent="">
-                <input type="text" v-if="editing" v-model="section.name">
+    <div class="card">
+        <div class="card-header">
+            <span v-if="!editing" class="card-header-title">{{section.name}}</span>
+            <form v-if="editing" class="column" @submit.prevent="">
+                <div class="field">
+                    <div class="control">
+                        <input type="text" v-if="editing" v-model="section.name" class="input">
+                    </div>
+                </div>
                 <button @click="saveChanges()" class="btn">Save Changes</button>
             </form>
+
         </div>
-        <div class="card-action">
-            <div v-if="!editing && !deleting">
-                <a :href="'/theme/' + themeId + '/sections/' + section.id + '/fields'" class="btn">Fields</a>
-                <a @click="edit()" class="btn-floating"><i class="material-icons">edit</i></a>
-                <a href="#" class="btn-floating"><i class="material-icons">content_copy</i></a>
-                <a @click="confirmDelete()" class="btn-floating"><i class="material-icons">delete</i></a>
-            </div>
-        </div>
+
+        <footer class="card-footer">
+            <a v-if="!deleting && !editing"
+               :href="'/theme/' + themeId + '/sections/' + section.id + '/fields'"
+               class="is-primary card-footer-item">
+                Add/Edit Fields
+            </a>
+            <a v-if="!deleting && !editing" @click="edit()" class="is-primary card-footer-item"><i
+                    class="material-icons">edit</i></a>
+            <a v-if="!deleting && !editing" href="#" class="is-primary card-footer-item"><i class="material-icons">content_copy</i></a>
+            <a v-if="!deleting && !editing" @click="confirmDelete()"
+               class="is-primary card-footer-item">
+                <i class="material-icons">delete</i>
+            </a>
+
+            <a v-if="deleting && !editing" class="card-footer-item" @click="deleteTheme()">Delete</a>
+            <a v-if="deleting && !editing" class="card-footer-item" @click="cancelDelete()">Cancel</a>
+
+            <a v-if="editing" class="card-footer-item" @click="saveChanges()">
+                Save Changes
+            </a>
+        </footer>
     </div>
 </template>
 
@@ -40,7 +59,11 @@
             },
 
             confirmDelete: function () {
+                this.deleting = true;
+            },
 
+            cancelDelete: function () {
+                this.deleting = false;
             },
         },
 

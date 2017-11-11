@@ -1,6 +1,6 @@
 <template>
-    <div class="row">
-        <div class="col s12 l6" v-for="section in sections">
+    <div>
+        <div v-for="section in sections">
             <section-card :section="section" :theme-id="themeId"></section-card>
         </div>
     </div>
