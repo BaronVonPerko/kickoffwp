@@ -18,7 +18,9 @@ class SectionController extends Controller
     public function index($themeId)
     {
 	    $sections = Section::SectionTheme($themeId)->get();
-	    return view('sections', ["themeId" => $themeId, "sections" => $sections]);
+	    $theme = Theme::find($themeId);
+
+	    return view('sections', ["themeId" => $themeId, "themeName" => $theme->name, "sections" => $sections]);
     }
 
     /**

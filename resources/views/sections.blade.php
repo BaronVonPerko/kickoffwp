@@ -11,6 +11,7 @@
                         Input the name of your section. This will equate to a customizer page section. The next
                         step will allow you to add controls to this section.
                     </p>
+                    <p class="is-size-7 has-text-grey-light">Theme: {{$themeName}}</p>
                 </div>
 
                 <form class="column is-6" action="/theme/{{$themeId}}/sections" method="post">
@@ -49,6 +50,9 @@
                     </div>
                     <div class="column is-6">
                         <h3 class="title has-text-grey">Existing Sections</h3>
+                        <p>
+                            Update, delete, and copy existing sections for this theme.
+                        </p>
                     </div>
                 </div>
             </div>
