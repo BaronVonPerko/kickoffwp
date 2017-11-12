@@ -1,6 +1,6 @@
 <template>
-    <div class="row">
-        <table v-if="fields.length" class="responsive-table highlight">
+    <div class="container">
+        <table v-if="fields.length" class="content">
             <thead>
             <tr>
                 <th>Label</th>
