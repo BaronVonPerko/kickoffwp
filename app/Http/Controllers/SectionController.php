@@ -104,8 +104,21 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($themeId, $sectionId)
     {
-        //
+        $section = Section::find($sectionId);
+
+        if($section != null) {
+	        $theme = $section->theme;
+
+	        if( ($theme->user_id == null || $theme->user_id == Auth::id()) && $theme->id == $themeId) {
+		        $section->fields()->delete();
+		        $section->delete();
+
+		        return response()->json(["success" => true]);
+	        }
+        }
+
+	    return response()->json(["success" => false, "message" => "Invalid Section ID"]);
     }
 }

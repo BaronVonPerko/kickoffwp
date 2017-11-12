@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\CustomizerField;
 use App\Section;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -88,5 +89,41 @@ class SectionTest extends TestCase {
 		     ->assertJson( [ "success" => false, "message" => "Invalid Section ID" ] );
 
 		$this->assertNotEquals( "Another Update", $section->fresh()->name );
+	}
+
+	/** @test */
+	function a_section_and_all_of_its_fields_can_be_deleted() {
+		$user    = factory( User::class )->create();
+		$theme   = factory( Theme::class )->create( [ "user_id" => $user->id ] );
+		$section = factory( Section::class )->create( [ "theme_id" => $theme->id ] );
+		$field   = factory( CustomizerField::class )->create( [ "section_id" => $section->id ] );
+
+		$this->actingAs( $user )
+		     ->delete( "/theme/$theme->id/sections/$section->id" )
+		     ->assertStatus( 200 )
+		     ->assertJson( [ "success" => true ] );
+
+		$this->assertNull( $field->fresh() );
+		$this->assertNull( $section->fresh() );
+		$this->assertNotNull( $theme->fresh() );
+	}
+
+	/** @test */
+	function a_section_wont_delete_if_the_url_has_invalid_themeid() {
+		$user    = factory( User::class )->create();
+		$theme   = factory( Theme::class )->create( [ "user_id" => $user->id ] );
+		$section = factory( Section::class )->create( [ "theme_id" => $theme->id ] );
+		$field   = factory( CustomizerField::class )->create( [ "section_id" => $section->id ] );
+
+		$fakeThemeId = $theme->id + 1;
+
+		$this->actingAs( $user )
+		     ->delete( "/theme/$fakeThemeId/sections/$section->id" )
+		     ->assertStatus( 200 )
+		     ->assertJson( [ "success" => false, "message" => "Invalid Section ID" ] );
+
+		$this->assertNotNull( $field->fresh() );
+		$this->assertNotNull( $section->fresh() );
+		$this->assertNotNull( $theme->fresh() );
 	}
 }
