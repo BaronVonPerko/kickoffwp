@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card" v-if="!isDeleted">
         <div class="card-header">
             <span v-if="!editing" class="card-header-title">{{section.name}}</span>
             <form v-if="editing" class="column" @submit.prevent="">
@@ -27,7 +27,7 @@
                 <i class="material-icons">delete</i>
             </a>
 
-            <a v-if="deleting && !editing" class="card-footer-item" @click="deleteTheme()">Delete</a>
+            <a v-if="deleting && !editing" class="card-footer-item" @click="deleteSection()">Delete</a>
             <a v-if="deleting && !editing" class="card-footer-item" @click="cancelDelete()">Cancel</a>
 
             <a v-if="editing" class="card-footer-item" @click="saveChanges()">
@@ -46,6 +46,7 @@
             return {
                 editing: false,
                 deleting: false,
+                isDeleted: false,
             };
         },
 
@@ -64,6 +65,20 @@
 
             cancelDelete: function () {
                 this.deleting = false;
+            },
+
+            deleteSection: function() {
+                axios.delete('/theme/' + this.themeId + '/sections/' + this.section.id)
+                    .then(response => {
+                        if (response.data.success) {
+                            this.isDeleted = true;
+                            toast('Section Deleted');
+                        } else {
+                            toast(response.data.message, 'red');
+                        }
+
+                        this.deleting = false;
+                    });
             },
         },
 
