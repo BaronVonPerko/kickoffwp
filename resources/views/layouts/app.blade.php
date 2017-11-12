@@ -36,6 +36,10 @@
             <div class="navbar-menu navbar-end">
                 <a href="/start" class="navbar-item">Start</a>
 
+                @guest()
+                    <a href="/login" class="navbar-item">Login</a>
+                @endguest
+
                 @auth()
                     <a href="/logout" class="navbar-item">Logout</a>
                 @endauth
