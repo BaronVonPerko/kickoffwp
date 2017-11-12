@@ -38,6 +38,7 @@
 
                 @guest()
                     <a href="/login" class="navbar-item">Login</a>
+                    <a href="/register" class="navbar-item">Register</a>
                 @endguest
 
                 @auth()
