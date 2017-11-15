@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CustomizerField;
+use App\Http\Requests\FieldRequest;
 use App\Section;
 use App\Theme;
 use App\Traits\ProtectCustomizerClassTrait;
@@ -57,7 +58,9 @@ class FieldsController extends Controller {
 		$default = $request->get( 'default' );
 		$typeId  = $request->get( 'type_id' );
 
-		if($typeId == null) $typeId = 1;
+		if ( $typeId == null ) {
+			$typeId = 1;
+		}
 
 		return CustomizerField::create( [
 			"label"      => $label,
@@ -97,8 +100,15 @@ class FieldsController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update( Request $request, $id ) {
-		//
+	public function update( FieldRequest $request, $themeId, $sectionId, $id ) {
+		$field = CustomizerField::find( $id );
+
+		if ( $field == null ) {
+			return response()->json( [ "success" => false ] );
+		}
+
+		$field->update( $request->validated() );
+		return response()->json( [ "success" => true ] );
 	}
 
 	/**

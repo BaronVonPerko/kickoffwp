@@ -102,8 +102,21 @@ class CustomizerFieldTest extends TestCase {
 	function it_should_have_a_type() {
 		$type = FieldType::first();
 
-		$field = factory( CustomizerField::class )->create(['type_id' => $type->id]);
+		$field = factory( CustomizerField::class )->create( [ 'type_id' => $type->id ] );
 
-		$this->assertEquals($type, $field->type);
+		$this->assertEquals( $type, $field->type );
+	}
+
+	/** @test */
+	function it_can_be_updated() {
+		$section = factory( Section::class )->create();
+		$field   = factory( CustomizerField::class )->create( [ 'section_id' => $section->id ] );
+
+		$this->put( "/theme/$section->theme_id/sections/$section->id/fields/$field->id", [
+			"label" => "Updated",
+		] )->assertStatus( 200 )
+			->assertJson(["success" => true]);
+
+		$this->assertEquals( "Updated", $field->fresh()->label );
 	}
 }
