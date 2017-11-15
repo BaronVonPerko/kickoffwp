@@ -41,7 +41,11 @@
                 this.isEditing = true;
             },
             save: function() {
-                this.isEditing = false;
+                axios.put(`/theme/${this.themeId}/sections/${this.sectionId}/fields/${this.field.id}`, {label: this.field.label})
+                    .then(response => {
+                        console.log(response);
+                        this.isEditing = false;
+                    });
             },
             cancel: function() {
                 this.field.label = this.originalLabel;
