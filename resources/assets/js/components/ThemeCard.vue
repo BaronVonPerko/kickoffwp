@@ -23,8 +23,9 @@
         </div>
         <footer class="card-footer">
             <a v-if="!deleting && !editing" :href="sectionsLink" class="is-primary card-footer-item">Add/Edit Sections</a>
-            <a v-if="!deleting && !editing" @click="edit()" class="is-primary card-footer-item"><i
-                    class="material-icons">edit</i></a>
+            <a v-if="!deleting && !editing" @click="edit()" class="is-primary card-footer-item">
+                <i class="material-icons">edit</i>
+            </a>
             <a v-if="!deleting && !editing" href="#" class="is-primary card-footer-item"><i class="material-icons">content_copy</i></a>
             <a v-if="!deleting && !editing" @click="confirmDelete()" class="is-primary card-footer-item"><i class="material-icons">delete</i></a>
 
