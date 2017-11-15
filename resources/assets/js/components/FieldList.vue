@@ -10,7 +10,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <field-list-item v-for="field in fields" :key="field.id" :field="field"></field-list-item>
+                <field-list-item v-for="field in fields"
+                                 :key="field.id"
+                                 :theme-id="themeId"
+                                 :section-id="sectionId"
+                                 :field="field">
+                </field-list-item>
                 </tbody>
             </table>
 
@@ -24,6 +29,6 @@
 
 <script type="text/babel">
     module.exports = {
-        props: ['fields'],
+        props: ['fields', 'themeId', 'sectionId'],
     };
 </script>

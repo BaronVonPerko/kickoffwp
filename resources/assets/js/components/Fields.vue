@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <field-list :fields="fieldList"></field-list>
+        <field-list :fields="fieldList" :theme-id="themeId" :section-id="sectionId"></field-list>
     </div>
 </template>
 

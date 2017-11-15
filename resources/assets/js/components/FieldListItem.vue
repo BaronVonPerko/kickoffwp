@@ -25,7 +25,7 @@
 
 <script type="text/babel">
     module.exports = {
-        props: ["field"],
+        props: ["field", "themeId", "sectionId"],
 
         data: function () {
             return {
