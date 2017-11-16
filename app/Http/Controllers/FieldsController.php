@@ -102,21 +102,9 @@ class FieldsController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update( FieldRequest $request, $themeId, $sectionId, $id ) {
-		$field = CustomizerField::find( $id );
+		$field = $this->checkPermissions($themeId, $sectionId, $id);
 
-		if ( $field == null ) {
-			return response()->json( [ "success" => false ] );
-		}
-
-		$section = Section::find($field->section_id);
-
-		if($section->theme_id != $themeId or $section->id != $sectionId) {
-			return response()->json(["success" => false, "message" => "Invalid ID"]);
-		}
-
-		$theme = Theme::find($section->theme_id);
-
-		if(!is_null($theme->user_id) and $theme->user_id != Auth::id()) {
+		if(!$field) {
 			return response()->json(["success" => false, "message" => "Invalid ID"]);
 		}
 
@@ -131,7 +119,46 @@ class FieldsController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy( $id ) {
-		//
+	public function destroy( $themeId, $sectionId, $id ) {
+		$field = $this->checkPermissions($themeId, $sectionId, $id);
+
+		if(!$field) {
+			return response()->json(["success" => false, "message" => "Invalid ID"]);
+		}
+
+		$field->delete();
+		return response()->json( [ "success" => true ] );
+	}
+
+
+	/**
+	 * Check to make sure we have permissions to do actions on this field.
+	 *
+	 * @param $themeId
+	 * @param $sectionId
+	 * @param $fieldId
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	protected function checkPermissions($themeId, $sectionId, $fieldId) {
+		$field = CustomizerField::find( $fieldId );
+
+		if ( $field == null ) {
+			return false;
+		}
+
+		$section = Section::find($field->section_id);
+
+		if($section->theme_id != $themeId or $section->id != $sectionId) {
+			return false;
+		}
+
+		$theme = Theme::find($section->theme_id);
+
+		if(!is_null($theme->user_id) and $theme->user_id != Auth::id()) {
+			return false;
+		}
+
+		return $field;
 	}
 }
