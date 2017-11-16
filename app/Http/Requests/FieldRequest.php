@@ -23,6 +23,7 @@ class FieldRequest extends FormRequest {
 		return [
 			"label"   => "required",
 			"default" => "string",
+			"type_id" => "integer",
 		];
 	}
 }

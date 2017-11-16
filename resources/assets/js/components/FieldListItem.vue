@@ -9,8 +9,8 @@
             </div>
         </td>
         <td>
-            <span v-if="!isEditing">{{field.default || 'null'}}</span>
-            <div class="field" v-if="isEditing">
+            <span v-if="!isEditing || field.type_id == 3 || field.type_id == 4">{{field.default || 'null'}}</span>
+            <div class="field" v-if="isEditing && field.type_id != 3 && field.type_id != 4">
                 <div class="control">
                     <input placeholder="Field Default Value" type="text" class="input" id="default" name="default" v-model="field.default" required>
                 </div>
