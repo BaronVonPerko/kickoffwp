@@ -8,7 +8,14 @@
                 </div>
             </div>
         </td>
-        <td>{{field.default || 'null'}}</td>
+        <td>
+            <span v-if="!isEditing">{{field.default || 'null'}}</span>
+            <div class="field" v-if="isEditing">
+                <div class="control">
+                    <input placeholder="Field Default Value" type="text" class="input" id="default" name="default" v-model="field.default" required>
+                </div>
+            </div>
+        </td>
         <td>
             <a v-if="!isDeleting && !isEditing" @click="edit()" class="is-primary">
                 <i class="material-icons">edit</i>
@@ -41,9 +48,19 @@
                 this.isEditing = true;
             },
             save: function() {
-                axios.put(`/theme/${this.themeId}/sections/${this.sectionId}/fields/${this.field.id}`, {label: this.field.label})
+                let data = {
+                    label: this.field.label,
+                    default: this.field.default,
+                };
+                axios.put(`/theme/${this.themeId}/sections/${this.sectionId}/fields/${this.field.id}`, data)
                     .then(response => {
-                        console.log(response);
+
+                        if (response.data.success) {
+                            toast('Field Updated');
+                        } else {
+                            toast(response.data.message, 'red');
+                        }
+
                         this.isEditing = false;
                     });
             },

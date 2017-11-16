@@ -113,11 +113,13 @@ class CustomizerFieldTest extends TestCase {
 		$field   = factory( CustomizerField::class )->create( [ 'section_id' => $section->id ] );
 
 		$this->put( "/theme/$section->theme_id/sections/$section->id/fields/$field->id", [
-			"label" => "Updated",
+			"label"   => "Updated",
+			"default" => "Some text",
 		] )->assertStatus( 200 )
 		     ->assertJson( [ "success" => true ] );
 
 		$this->assertEquals( "Updated", $field->fresh()->label );
+		$this->assertEquals( "Some text", $field->fresh()->default );
 	}
 
 	/** @test */
