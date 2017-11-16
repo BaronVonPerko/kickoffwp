@@ -8,6 +8,7 @@ use App\Section;
 use App\Theme;
 use App\Traits\ProtectCustomizerClassTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FieldsController extends Controller {
 	use ProtectCustomizerClassTrait;
@@ -105,6 +106,18 @@ class FieldsController extends Controller {
 
 		if ( $field == null ) {
 			return response()->json( [ "success" => false ] );
+		}
+
+		$section = Section::find($field->section_id);
+
+		if($section->theme_id != $themeId or $section->id != $sectionId) {
+			return response()->json(["success" => false, "message" => "Invalid ID"]);
+		}
+
+		$theme = Theme::find($section->theme_id);
+
+		if(!is_null($theme->user_id) and $theme->user_id != Auth::id()) {
+			return response()->json(["success" => false, "message" => "Invalid ID"]);
 		}
 
 		$field->update( $request->validated() );

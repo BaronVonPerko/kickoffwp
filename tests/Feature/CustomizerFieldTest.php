@@ -115,8 +115,48 @@ class CustomizerFieldTest extends TestCase {
 		$this->put( "/theme/$section->theme_id/sections/$section->id/fields/$field->id", [
 			"label" => "Updated",
 		] )->assertStatus( 200 )
-			->assertJson(["success" => true]);
+		     ->assertJson( [ "success" => true ] );
 
 		$this->assertEquals( "Updated", $field->fresh()->label );
+	}
+
+	/** @test */
+	function it_requires_matching_section_and_theme_ids_to_update() {
+		$section = factory( Section::class )->create();
+		$field   = factory( CustomizerField::class )->create( [ 'section_id' => $section->id ] );
+
+		$badThemeId   = $section->theme_id + 1;
+		$badSectionId = $section->id + 1;
+
+		$this->put( "/theme/$badThemeId/sections/$section->id/fields/$field->id", [
+			"label" => "Updated",
+		] )->assertStatus( 200 )
+		     ->assertJson( [ "success" => false, "message" => "Invalid ID" ] );
+
+		$this->assertNotEquals( "Updated", $field->fresh()->label );
+
+		$this->put( "/theme/$section->theme_id/sections/$badThemeId/fields/$field->id", [
+			"label" => "Updated",
+		] )->assertStatus( 200 )
+		     ->assertJson( [ "success" => false, "message" => "Invalid ID" ] );
+
+		$this->assertNotEquals( "Updated", $field->fresh()->label );
+	}
+
+	/** @test */
+	function it_requires_a_matching_userid_if_not_anonymous() {
+		$user    = factory( User::class )->create();
+		$theme   = factory( Theme::class )->create( [ "user_id" => $user->id ] );
+		$section = factory( Section::class )->create( [ "theme_id" => $theme->id ] );
+		$field   = factory( CustomizerField::class )->create( [ 'section_id' => $section->id ] );
+		$badUser = factory( User::class )->create();
+
+		$this->actingAs( $badUser )
+		     ->put( "/theme/$section->theme_id/sections/$section->id/fields/$field->id", [
+			     "label" => "Updated",
+		     ] )->assertStatus( 200 )
+		     ->assertJson( [ "success" => false, "message" => "Invalid ID" ] );
+
+		$this->assertNotEquals( "Updated", $field->fresh()->label );
 	}
 }
