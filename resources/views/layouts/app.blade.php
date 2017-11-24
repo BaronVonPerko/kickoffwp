@@ -33,18 +33,20 @@
                 </button>
             </div>
 
-            <div class="navbar-menu navbar-end">
-                <a href="/start" class="navbar-item">Start</a>
+            @if(env('APP_ENV') == 'local')
+                <div class="navbar-menu navbar-end">
+                    <a href="/start" class="navbar-item">Start</a>
 
-                @guest()
-                    <a href="/login" class="navbar-item">Login</a>
-                    <a href="/register" class="navbar-item">Register</a>
-                @endguest
+                    @guest()
+                        <a href="/login" class="navbar-item">Login</a>
+                        <a href="/register" class="navbar-item">Register</a>
+                    @endguest
 
-                @auth()
-                    <a href="/logout" class="navbar-item">Logout</a>
-                @endauth
-            </div>
+                    @auth()
+                        <a href="/logout" class="navbar-item">Logout</a>
+                    @endauth
+                </div>
+            @endif
         </div>
     </nav>
 
