@@ -1,47 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <form class="hero is-fullheight" method="POST" action="{{ route('password.email') }}">
 
-                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-6 is-offset-3">
+                    <div class="title has-text-grey">Reset Password</div>
+
+                    <div class="box has-text-left">
+
+                        @if (session('status'))
+                            <p class="help is-large is-success">
+                                {{ session('status') }}
+                            </p>
+                        @endif
+
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="field">
+                            <div class="label">Email Address</div>
+                            <div class="control has-icons-left">
+                                <input id="email" type="email" class="input" name="email" value="{{ old('email') }}"
+                                       required placeholder="Email Address">
+                                <span class="icon is-small is-left">
+                                <i class="material-icons">email</i>
+                            </span>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        <p class="help is-danger">
+                            {{ $errors->first('email') }}
+                        </p>
+
+                        <p class="field">
+                            <button class="button is-block is-large is-info is-fullwidth">
+                                Send Password Reset Link <i class="material-icons right">send</i>
+                            </button>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </form>
 @endsection

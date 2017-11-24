@@ -1,77 +1,81 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+    <form method="POST" action="{{ route('register') }}" class="hero is-fullheight">
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-6 is-offset-3">
+                    <div class="title has-text-grey">Register</div>
+
+                    <div class="box has-text-left">
+
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="field">
+                            <div class="label">Name</div>
+                            <div class="control has-icons-left">
+                                <input id="name" class="input" name="name" value="{{ old('name') }}"
+                                       required autofocus placeholder="Name">
+                                <span class="icon is-small is-left">
+                                    <i class="material-icons">person_pin</i>
+                                </span>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        @if ($errors->has('name'))
+                            <p class="help is-danger">{{ $errors->first('name') }}</p>
+                        @endif
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="field">
+                            <div class="label">Email Address</div>
+                            <div class="control has-icons-left">
+                                <input id="email" type="email" class="input" name="email"
+                                       value="{{ old('email') }}" required placeholder="Email Address">
+                                <span class="icon is-small is-left">
+                                    <i class="material-icons">email</i>
+                                </span>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                        @if ($errors->has('email'))
+                            <p class="help is-danger">{{ $errors->first('email') }}</p>
+                        @endif
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="field">
+                            <div class="label">Password</div>
+                            <div class="control has-icons-left">
+                                <input id="password" type="password" class="input" name="password" required placeholder="Password">
+                                <span class="icon is-small is-left">
+                                    <i class="material-icons">lock</i>
+                                </span>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                        @if ($errors->has('password'))
+                            <p class="help is-danger">{{ $errors->first('password') }}</p>
+                        @endif
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+
+                        <div class="field">
+                            <div class="label">Confirm Password</div>
+                            <div class="control has-icons-left">
+                                <input id="password-confirm" type="password" class="input" name="password-confirm" required placeholder="Confirm Password">
+                                <span class="icon is-small is-left">
+                                    <i class="material-icons">lock</i>
+                                </span>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        <p class="field">
+                            <button class="button is-block is-info is-large is-fullwidth">
+                                Register <i class="material-icons right">done</i>
+                            </button>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </form>
 @endsection

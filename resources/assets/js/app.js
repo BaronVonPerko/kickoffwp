@@ -15,10 +15,16 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('toast', require('./components/Toast.vue'));
 Vue.component('welcomeEmailSignup', require('./components/WelcomeEmailSignup.vue'));
 Vue.component('fields', require('./components/Fields.vue'));
 Vue.component('createFieldForm', require('./components/CreateFieldForm.vue'));
 Vue.component('fieldList', require('./components/FieldList.vue'));
+Vue.component('fieldListItem', require('./components/FieldListItem.vue'));
+Vue.component('themeList', require('./components/ThemeList.vue'));
+Vue.component('themeCard', require('./components/ThemeCard.vue'));
+Vue.component('sectionList', require('./components/SectionList.vue'));
+Vue.component('sectionCard', require('./components/SectionCard.vue'));
 
 const app = new Vue({
     el: '#app'

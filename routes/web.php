@@ -25,12 +25,24 @@ Route::get('/logout', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/remindme', 'WelcomePageEmailSignupController@signup');
 
-Route::get('/profile', 'ShowProfile');
+Route::get('/start', 'ShowStartPage');
 
-Route::get('/new', function() {
-	return view('newCustomizerClass');
+/**
+ * Themes
+ */
+Route::resource('theme', 'ThemeController');
+
+/**
+ * Sections
+ */
+Route::prefix('/theme/{id}')->group(function() {
+	Route::resource('sections', 'SectionController');
 });
-Route::post('/new', 'CreateNewCustomizerClass');
 
-Route::get('/fields/{id}', 'CustomizerFieldsController@showFields');
-Route::post('/fields/{id}/create', 'CustomizerFieldsController@create');
+
+/**
+ * Fields
+ */
+Route::prefix('/theme/{themeId}/sections/{sectionId}')->group(function() {
+	Route::resource('fields', 'FieldsController');
+});

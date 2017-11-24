@@ -37,6 +37,14 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+window.Vue = require('vue');
+
+window.events = new Vue();
+
+window.toast = function (message, level = 'light-green lighten-2') {
+    window.events.$emit('toast', { message, level });
+}
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
