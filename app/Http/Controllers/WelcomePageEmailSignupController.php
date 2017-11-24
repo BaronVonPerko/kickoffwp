@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeEmailSignupAlert;
 use App\WelcomeEmailAddress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class WelcomePageEmailSignupController extends Controller
 {
@@ -17,5 +19,8 @@ class WelcomePageEmailSignupController extends Controller
 	    }
 
     	WelcomeEmailAddress::create(['email' => $email]);
+
+    	Mail::to(env('ADMIN_EMAIL'))
+	        ->send(new WelcomeEmailSignupAlert($email));
     }
 }
