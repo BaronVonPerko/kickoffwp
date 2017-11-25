@@ -61,7 +61,7 @@
                         <div class="field">
                             <div class="label">Confirm Password</div>
                             <div class="control has-icons-left">
-                                <input id="password-confirm" type="password" class="input" name="password-confirm" required placeholder="Confirm Password">
+                                <input id="password_confirmation" type="password" class="input" name="password_confirmation" required placeholder="Confirm Password">
                                 <span class="icon is-small is-left">
                                     <i class="material-icons">lock</i>
                                 </span>
