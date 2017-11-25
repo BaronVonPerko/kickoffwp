@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Mail\WelcomeEmailSignupAlert;
 use App\WelcomeEmailAddress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Mockery\Exception;
 
 class WelcomePageEmailSignupController extends Controller
 {
@@ -20,7 +22,14 @@ class WelcomePageEmailSignupController extends Controller
 
     	WelcomeEmailAddress::create(['email' => $email]);
 
-    	Mail::to(env('ADMIN_EMAIL'))
-	        ->send(new WelcomeEmailSignupAlert($email));
+    	try {
+		    Mail::to( env( 'MAIL_TO_ADDRESS' ) )
+		        ->send( new WelcomeEmailSignupAlert( $email ) );
+	    } catch (\Exception $e) {
+    		report($e);
+    		return response(["error" => "An error occurred.  Don't worry, we are looking into it!"], 200);
+	    }
+
+	    return response(["success" => true], 200);
     }
 }
