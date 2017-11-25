@@ -27,7 +27,7 @@ class WelcomePageEmailSignupController extends Controller
 		        ->send( new WelcomeEmailSignupAlert( $email ) );
 	    } catch (\Exception $e) {
     		report($e);
-    		return response(["error" => "An error occurred.  Don't worry, we are looking into it!"], 200);
+    		return response([], 200);
 	    }
 
 	    return response(["success" => true], 200);
