@@ -22,14 +22,6 @@ class WelcomePageEmailSignupController extends Controller
 
     	WelcomeEmailAddress::create(['email' => $email]);
 
-    	try {
-		    Mail::to( env( 'MAIL_TO_ADDRESS' ) )
-		        ->send( new WelcomeEmailSignupAlert( $email ) );
-	    } catch (\Exception $e) {
-    		report($e);
-    		return response([], 200);
-	    }
-
 	    return response(["success" => true], 200);
     }
 }
