@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->job(new NightlyReport)->dailyAt('23:00');
+         $schedule->job(new NightlyReport)->dailyAt('23:59');
     }
 
     /**
