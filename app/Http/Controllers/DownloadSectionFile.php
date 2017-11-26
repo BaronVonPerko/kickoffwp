@@ -62,9 +62,11 @@ class DownloadSectionFile extends Controller
 
         $contents = $this->files->get(__DIR__ . '/../../Stubs/SectionCustomizer.stub');
 
-        $contents = $this->setupFile($contents);
+        $contents = $this->replaceCommon($contents);
         $contents = $this->setupSettings($contents);
         $contents = $this->setupControls($contents);
+
+//        dd($contents);
 
         Storage::disk('public')->put($filename, $contents);
 
@@ -86,13 +88,6 @@ class DownloadSectionFile extends Controller
 
         $this->themeName   = str_replace(' ', '', $this->theme->name);
         $this->sectionName = str_replace(' ', '', $this->section->name);
-    }
-
-    private function setupFile($contents)
-    {
-        $contents = $this->replaceCommon($contents);
-
-        return $contents;
     }
 
     /**
