@@ -7,6 +7,7 @@ use App\Theme;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class DownloadSectionFile extends Controller
 {
@@ -44,6 +45,12 @@ class DownloadSectionFile extends Controller
         $this->files = $files;
 
         $this->getObjects($themeId, $sectionId);
+
+        $filename = str_replace(" ", "", $this->section->name) . ".php";
+
+        Storage::disk('public')->put($filename, 'hello world');
+        return response()->download("storage/$filename")
+                         ->deleteFileAfterSend(true);
 
 //        $this->files->put("public/files/test.txt", "hello world");
 //        return response()->download("images/code-screenshot.png");
