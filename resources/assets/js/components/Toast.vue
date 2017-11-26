@@ -1,6 +1,6 @@
 <template>
     <transition name="fade">
-        <div class="card z-depth-5 alert-flash" v-show="show" :class="level" role="alert">
+        <div class="card z-depth-5 alert-flash" v-show="show" role="alert">
             <div class="card-content black-text">
                 <span class="card-title">{{body}}</span>
             </div>
@@ -14,7 +14,6 @@
         data() {
             return {
                 body: this.message,
-                level: 'light-green lighten-s',
                 show: false
             }
         },
@@ -30,7 +29,6 @@
             toast(data) {
                 if (data) {
                     this.body = data.message;
-                    this.level = data.level;
                 }
                 this.show = true;
                 this.hide();
@@ -38,7 +36,7 @@
             hide() {
                 setTimeout(() => {
                     this.show = false;
-                }, 2000);
+                }, 3000);
             }
         }
     };
@@ -48,7 +46,7 @@
     .alert-flash {
         position: fixed;
         right: 25px;
-        top: 25px;
+        bottom: 25px;
         opacity: 1;
     }
 

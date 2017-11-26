@@ -92,7 +92,7 @@
                             this.isDeleted = true;
                             toast('Section Deleted');
                         } else {
-                            toast(response.data.message, 'red');
+                            toast(response.data.message);
                         }
 
                         this.deleting = false;
