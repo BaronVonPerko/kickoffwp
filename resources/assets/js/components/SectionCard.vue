@@ -20,7 +20,7 @@
             </a>
             <a v-if="!deleting && !editing" @click="edit()" class="is-primary card-footer-item"><i
                     class="material-icons">edit</i></a>
-            <a v-if="!deleting && !editing" @click="download()" href="#" class="is-primary card-footer-item">
+            <a v-if="!deleting && !editing" :href="downloadLink" class="is-primary card-footer-item">
                 <i class="material-icons">file_download</i>
             </a>
             <a v-if="!deleting && !editing" @click="confirmDelete()"
@@ -54,6 +54,12 @@
             };
         },
 
+        computed: {
+            downloadLink: function() {
+                return '/theme/' + this.themeId + '/sections/' + this.section.id + '/download';
+            }
+        },
+
         methods: {
             edit: function () {
                 this.editing = true;
@@ -85,7 +91,7 @@
                 this.deleting = false;
             },
 
-            deleteSection: function() {
+            deleteSection: function () {
                 axios.delete('/theme/' + this.themeId + '/sections/' + this.section.id)
                     .then(response => {
                         if (response.data.success) {
@@ -99,8 +105,12 @@
                     });
             },
 
-            download: function() {
-                //
+            download: function () {
+                axios.get('/theme/' + this.themeId + '/sections/' + this.section.id + '/download', {
+                    responseType: 'arraybuffer',
+                }).then(response => {
+                    //
+                });
             },
         },
 

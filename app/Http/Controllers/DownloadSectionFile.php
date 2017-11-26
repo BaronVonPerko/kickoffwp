@@ -66,8 +66,6 @@ class DownloadSectionFile extends Controller
         $contents = $this->setupSettings($contents);
         $contents = $this->setupControls($contents);
 
-        dd($contents);
-
         Storage::disk('public')->put($filename, $contents);
 
         return response()->download("storage/$filename")
