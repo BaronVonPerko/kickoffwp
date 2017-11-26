@@ -27,7 +27,7 @@ class NightlyReport implements ShouldQueue {
 	 * @return void
 	 */
 	public function handle() {
-		Mail::to( env( 'MAIL_TO_ADDRESS' ) )
+		Mail::to( env( 'MAIL_TO_ADDRESS', 'chris@chrisperko.net' ) )
 			->send(new \App\Mail\NightlyReport());
     }
 }
