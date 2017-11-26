@@ -103,7 +103,10 @@ class DownloadSectionFile extends Controller
             $stub = $this->files->get(__DIR__ . '/../../Stubs/Setting.stub');
             $stub = $this->replaceCommon($stub);
 
+            $fieldName = str_replace(' ', '', $field->label);
+
             $stub = str_replace('~Default~', "'default' => '$field->default'", $stub) . "\n\n";
+            $stub = str_replace('~FieldName~', $fieldName, $stub);
 
             $fieldContents .= $stub;
         }

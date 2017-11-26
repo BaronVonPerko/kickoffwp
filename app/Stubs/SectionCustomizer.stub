@@ -10,6 +10,7 @@ class Custom~SectionName~
 
         $this->SetupSection();
         $this->SetupSettings();
+        $this->SetupControls();
     }
 
     private function SetupSection() {
