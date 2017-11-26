@@ -8,7 +8,6 @@
                         <input type="text" v-if="editing" v-model="section.name" class="input">
                     </div>
                 </div>
-                <button @click="saveChanges()" class="btn">Save Changes</button>
             </form>
 
         </div>
@@ -21,7 +20,9 @@
             </a>
             <a v-if="!deleting && !editing" @click="edit()" class="is-primary card-footer-item"><i
                     class="material-icons">edit</i></a>
-            <a v-if="!deleting && !editing" href="#" class="is-primary card-footer-item"><i class="material-icons">content_copy</i></a>
+            <a v-if="!deleting && !editing" href="#" class="is-primary card-footer-item">
+                <i class="material-icons">content_copy</i>
+            </a>
             <a v-if="!deleting && !editing" @click="confirmDelete()"
                class="is-primary card-footer-item">
                 <i class="material-icons">delete</i>
@@ -32,6 +33,9 @@
 
             <a v-if="editing" class="card-footer-item" @click="saveChanges()">
                 Save Changes
+            </a>
+            <a v-if="editing" class="card-footer-item" @click="cancelEdit()">
+                Cancel
             </a>
         </footer>
     </div>
@@ -56,6 +60,20 @@
             },
 
             saveChanges: function () {
+                axios.put('/theme/' + this.themeId + '/sections/' + this.section.id, {
+                    'name': this.section.name
+                }).then(response => {
+                    if (response.data.success) {
+                        toast('Section Updated');
+                    } else {
+                        toast(response.data.message, 'red');
+                    }
+
+                    this.editing = false;
+                });
+            },
+
+            cancelEdit: function () {
                 this.editing = false;
             },
 
