@@ -1,0 +1,5 @@
+$this->wp_customize->add_control( new WP_Customize_Control( $this->wp_customize, '~ThemeName~_~SectionName~_~FieldName~Control', array(
+    'label' => '~FieldNameFull~',
+    'section' => '~ThemeName~_~SectionName~',
+    'settings' => '~ThemeName~_~SectionName~_~FieldName~',
+) ) );

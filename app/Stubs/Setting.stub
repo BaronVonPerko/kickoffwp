@@ -1,0 +1,3 @@
+$this->wp_customize->add_setting('~ThemeName~_~SectionName~_~FieldName~', array(
+    ~Default~
+));
