@@ -21,11 +21,11 @@ class Custom~SectionName~
     }
 
     private function SetupSettings() {
-        ~Settings~
+~Settings~
     }
 
     private function SetupControls() {
-        ~Controls~
+~Controls~
     }
 
 }
