@@ -8,9 +8,7 @@ class Custom~SectionName~
     public function Register($wp_customize) {
         $this->wp_customize = $wp_customize;
 
-        $this->SetupSection();
-        $this->SetupSettings();
-        $this->SetupControls();
+        $this->SetupSection()->SetupSettings()->SetupControls();
     }
 
     private function SetupSection() {
@@ -18,14 +16,20 @@ class Custom~SectionName~
             'title'     => '~SectionNameFull~',
             'priority'  => 30,
         ) );
+
+        return $this;
     }
 
     private function SetupSettings() {
 ~Settings~
+
+        return $this;
     }
 
     private function SetupControls() {
 ~Controls~
+
+        return $this;
     }
 
 }
