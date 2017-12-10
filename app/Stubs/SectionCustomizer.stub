@@ -2,13 +2,14 @@
 
 class Custom~SectionName~
 {
-
     private $wp_customize;
 
-    public function Register($wp_customize) {
-        $this->wp_customize = $wp_customize;
+    public static function Register($wp_customize) {
+        $customizer = new Custom~SectionName~();
 
-        $this->SetupSection()->SetupSettings()->SetupControls();
+        $customizer->wp_customize = $wp_customize;
+
+        $customizer->SetupSection()->SetupSettings()->SetupControls();
     }
 
     private function SetupSection() {
@@ -22,14 +23,11 @@ class Custom~SectionName~
 
     private function SetupSettings() {
 ~Settings~
-
         return $this;
     }
 
     private function SetupControls() {
 ~Controls~
-
         return $this;
     }
-
 }
