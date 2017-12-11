@@ -5,10 +5,11 @@
             <div class="select">
                 <select v-model="newType">
                     <option value="" disabled>Choose a Customizer Type</option>
-                    <option value="1">Generic</option>
-                    <option value="2">Color</option>
-                    <option value="3">Upload</option>
-                    <option value="4">Image</option>
+                    <option value="1">Text Input</option>
+                    <option value="2">Text Area</option>
+                    <option value="3">Color</option>
+                    <option value="4">Upload</option>
+                    <option value="5">Image</option>
                 </select>
             </div>
         </div>
