@@ -18,6 +18,8 @@ Route::post('/remindme', 'WelcomePageEmailSignupController@signup');
 
 Route::get('/start', 'ShowStartPage');
 
+Route::get('/fieldtypes', 'GetFieldTypes');
+
 /**
  * Themes
  */
