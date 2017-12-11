@@ -5,11 +5,9 @@
             <div class="select">
                 <select v-model="newType">
                     <option value="" disabled>Choose a Customizer Type</option>
-                    <option value="1">Text Input</option>
-                    <option value="2">Text Area</option>
-                    <option value="3">Color</option>
-                    <option value="4">Upload</option>
-                    <option value="5">Image</option>
+                    <option v-for="option in fieldTypes" :value="option.id">
+                        {{option.name}}
+                    </option>
                 </select>
             </div>
         </div>
@@ -46,7 +44,15 @@
                 newDefault: '',
                 submitting: false,
                 newType: '',
+                fieldTypes: [],
             };
+        },
+
+        created: function() {
+            axios.get('/fieldtypes')
+                .then(res => {
+                    this.fieldTypes = res.data;
+                });
         },
 
         methods: {
