@@ -17,7 +17,8 @@ class AddStubColumnToFieldType extends Migration
 			$table->string('stub')->nullable();
         });
 
-        \App\FieldType::where('name', 'Text Input')->update(['stub' => 'TextControl']);
+	    \App\FieldType::where('name', 'Text Input')->update(['stub' => 'TextInputControl']);
+	    \App\FieldType::where('name', 'Text Area')->update(['stub' => 'TextAreaControl']);
     }
 
     /**
