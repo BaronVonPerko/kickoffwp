@@ -210,4 +210,12 @@ class CustomizerFieldTest extends TestCase {
 
 		$this->assertNotNull( $field->fresh() );
 	}
+
+	/** @test */
+	function it_can_get_the_stub_filename_for_the_given_field_type() {
+		$fieldType = FieldType::where( 'name', 'Text Input' )->first();
+		$field     = factory( CustomizerField::class )->create(['type_id' => $fieldType->id]);
+
+		$this->assertEquals($fieldType->stub, $field->type->stub);
+	}
 }

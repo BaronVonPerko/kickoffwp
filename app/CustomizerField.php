@@ -13,6 +13,6 @@ class CustomizerField extends Model
     }
 
     public function type() {
-    	return $this->belongsTo('FieldType');
+    	return $this->belongsTo('App\FieldType');
     }
 }
