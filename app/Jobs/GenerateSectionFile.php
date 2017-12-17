@@ -124,7 +124,7 @@ class GenerateSectionFile implements ShouldQueue
         $controlContents = '';
 
         foreach ($this->fields as $field) {
-            $stub = $this->files->get(__DIR__ . '/../Stubs/Control.stub');
+            $stub = $this->files->get( __DIR__ . '/../Stubs/TextControl.stub' );
             $stub = str_replace('~FieldName~', str_replace(' ', '', $field->label), $stub);
             $stub = str_replace('~FieldNameFull~', $field->label, $stub);
             $stub = $this->replaceCommon($stub);

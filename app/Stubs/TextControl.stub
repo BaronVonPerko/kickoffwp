@@ -2,4 +2,5 @@
             'label' => '~FieldNameFull~',
             'section' => '~ThemeName~_~SectionName~',
             'settings' => '~ThemeName~_~SectionName~_~FieldName~',
-        ) ) );
+        ) ) )
+        ;
