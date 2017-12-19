@@ -19,6 +19,9 @@ class AddStubColumnToFieldType extends Migration
 
 	    \App\FieldType::where('name', 'Text Input')->update(['stub' => 'TextInputControl']);
 	    \App\FieldType::where('name', 'Text Area')->update(['stub' => 'TextAreaControl']);
+	    \App\FieldType::where('name', 'Color Control')->update(['stub' => 'ColorPickerControl']);
+	    \App\FieldType::where('name', 'Upload Control')->update(['stub' => 'UploadControl']);
+	    \App\FieldType::where('name', 'Image Control')->update(['stub' => 'ImageControl']);
     }
 
     /**
