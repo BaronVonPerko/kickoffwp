@@ -18,6 +18,7 @@
                     @include('profile.anonymousCard')
                 @endguest
 
+                @auth
                 <div class="column">
                     <div class="card">
                         <div class="card-header">
@@ -44,6 +45,7 @@
                         </div>
                     </div>
                 </div>
+                @endauth
 
                 @auth
                     <div class="column is-two-thirds">

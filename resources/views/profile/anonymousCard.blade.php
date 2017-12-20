@@ -5,8 +5,7 @@
         </div>
         <div class="card-content">
             <p>
-                For the best experience, please register with us so that
-                you can save your generated customizer code. Kickoff is
+                Please register with us so to get started. Kickoff is
                 free and open-sourced!
             </p>
         </div>

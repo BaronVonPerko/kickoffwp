@@ -61,7 +61,7 @@
     <div class="container">
         <div class="content has-text-centered">
             <strong>KickoffWP</strong>
-            <p>&copy; 2017 <a href="http://ChrisPerko.net" target="_blank" class="white-text">Chris Perko</a></p>
+            <p>&copy; {{ date('Y') }} <a href="http://ChrisPerko.net" target="_blank" class="white-text">Chris Perko</a></p>
         </div>
     </div>
     </div>
