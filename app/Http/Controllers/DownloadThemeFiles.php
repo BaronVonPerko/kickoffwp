@@ -23,11 +23,11 @@ class DownloadThemeFiles extends Controller
 	    }
 
 	    $zipper = new Zipper();
-	    $zipper->make('storage/' . $theme->id . '.zip')
+	    $zipper->make('storage/' . $theme->name . '.zip')
 		    ->add($filenames)
 		    ->close();
 
-	    return response()->download('storage/' . $theme->id . '.zip')
+	    return response()->download('storage/' . $theme->name . '.zip')
 	                     ->deleteFileAfterSend(true);
     }
 }
