@@ -77,7 +77,7 @@ class GenerateSectionFile implements ShouldQueue
      */
     public function handle()
     {
-        $filename = "Custom" . "$this->sectionName.php";
+        $filename = "sections/Custom" . "$this->sectionName.php";
 
         $contents = $this->files->get(__DIR__ . '/../Stubs/SectionCustomizer.stub');
         $contents = $this->replaceCommon($contents);
