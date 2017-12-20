@@ -104,14 +104,6 @@
                         this.deleting = false;
                     });
             },
-
-            download: function () {
-                axios.get('/theme/' + this.themeId + '/sections/' + this.section.id + '/download', {
-                    responseType: 'arraybuffer',
-                }).then(response => {
-                    //
-                });
-            },
         },
 
     };

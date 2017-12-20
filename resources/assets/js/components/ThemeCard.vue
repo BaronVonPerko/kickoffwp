@@ -26,6 +26,11 @@
             <a v-if="!deleting && !editing" @click="edit()" class="is-primary card-footer-item">
                 <i class="material-icons">edit</i>
             </a>
+
+            <a v-if="!deleting && !editing" :href="downloadLink" class="is-primary card-footer-item">
+                <i class="material-icons">file_download</i>
+            </a>
+
             <a v-if="!deleting && !editing" @click="confirmDelete()" class="is-primary card-footer-item"><i class="material-icons">delete</i></a>
 
             <a v-if="deleting && !editing" class="card-footer-item" @click="deleteTheme()">Delete</a>
@@ -54,6 +59,9 @@
         computed: {
             sectionsLink: function () {
                 return "/theme/" + this.theme.id + "/sections";
+            },
+            downloadLink: function() {
+                return '/theme/' + this.theme.id + '/download';
             },
         },
 

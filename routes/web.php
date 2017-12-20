@@ -24,6 +24,7 @@ Route::get('/fieldtypes', 'GetFieldTypes');
  * Themes
  */
 Route::resource('theme', 'ThemeController');
+Route::get('theme/{themeId}/download', 'DownloadThemeFiles');
 
 /**
  * Sections
