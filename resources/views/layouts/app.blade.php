@@ -35,6 +35,16 @@
 
             @if(env('APP_ENV') == 'local')
                 <div class="navbar-menu navbar-end">
+                    <a class="navbar-item" target="_blank"
+                       href="https://github.com/BaronVonPerko/kickoffwp">
+                        Contribute
+                    </a>
+
+                    <a class="navbar-item" target="_blank"
+                       href="https://github.com/BaronVonPerko/kickoffwp/issues">
+                        Report Issues
+                    </a>
+
                     <a href="/start" class="navbar-item">Start</a>
 
                     @guest()
@@ -61,7 +71,8 @@
     <div class="container">
         <div class="content has-text-centered">
             <strong>KickoffWP</strong>
-            <p>&copy; {{ date('Y') }} <a href="http://ChrisPerko.net" target="_blank" class="white-text">Chris Perko</a></p>
+            <p>&copy; {{ date('Y') }} <a href="http://ChrisPerko.net" target="_blank" class="white-text">Chris Perko</a>
+            </p>
         </div>
     </div>
     </div>
