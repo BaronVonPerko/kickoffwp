@@ -26,7 +26,6 @@
             <a v-if="!deleting && !editing" @click="edit()" class="is-primary card-footer-item">
                 <i class="material-icons">edit</i>
             </a>
-            <a v-if="!deleting && !editing" href="#" class="is-primary card-footer-item"><i class="material-icons">content_copy</i></a>
             <a v-if="!deleting && !editing" @click="confirmDelete()" class="is-primary card-footer-item"><i class="material-icons">delete</i></a>
 
             <a v-if="deleting && !editing" class="card-footer-item" @click="deleteTheme()">Delete</a>
