@@ -8,13 +8,13 @@
                 <div class="container">
                     <div class="columns is-tablet">
                         <div class="column is-7">
-                            <img class="responsive-img" src="{{asset('images/code-screenshot.png')}}" alt="">
+                            <img class="responsive-img" src="{{asset('images/functions-example.png')}}" alt="">
                         </div>
                         <div class="column is-5">
-                            <h1 class="title">Kick off your WordPress customizer files.</h1>
+                            <h1 class="title">Kick off your WordPress Theme Customizer Files.</h1>
                             <h2 class="subtitle">
-                                Building customizer classes is tedious and takes time KickoffWP does it for
-                                you quickly and easily.
+                                Building customizer classes is tedious and takes time.
+                                KickoffWP does it for you quickly, easily, and for free!
                             </h2>
 
                             <welcome-email-signup></welcome-email-signup>
