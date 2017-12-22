@@ -22,7 +22,7 @@ class FieldRequest extends FormRequest {
 	public function rules() {
 		return [
 			"label"   => "required",
-			"default" => "string",
+			"default" => "nullable|string",
 			"type_id" => "integer",
 		];
 	}

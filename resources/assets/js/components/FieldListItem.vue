@@ -58,7 +58,6 @@
                 };
                 axios.put(`/theme/${this.themeId}/sections/${this.sectionId}/fields/${this.field.id}`, data)
                     .then(response => {
-
                         if (response.data.success) {
                             toast('Field Updated');
                         } else {
