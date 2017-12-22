@@ -29,6 +29,11 @@
                         <span class="is-size-6 has-text-grey-light">{{this.sectionName}}</span>
                     </div>
                     <field-list :fields="fieldList" :theme-id="themeId" :section-id="sectionId"></field-list>
+                    <div>
+                        <a :href="downloadLink" class="is-size-6">
+                            Download {{this.sectionName}}
+                        </a>
+                    </div>
                 </div>
 
             </div>
@@ -51,6 +56,12 @@
             newFieldCreated: function (field) {
                 this.fieldList.push(field);
             },
+        },
+
+        computed: {
+            downloadLink: function () {
+                return '/theme/' + this.themeId + '/sections/' + this.sectionId + '/download';
+            }
         },
     };
 </script>
