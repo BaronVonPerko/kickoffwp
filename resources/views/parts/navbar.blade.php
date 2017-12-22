@@ -9,13 +9,13 @@
                 <a href="/start" class="navbar-item is-size-4">KickoffWP</a>
             @endauth
 
-            <button class="button navbar-burger">
+            <button class="button navbar-burger" data-target="header-menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
 
         @if(env('APP_ENV') == 'local')
-            <div class="navbar-menu">
+            <div class="navbar-menu" id="header-menu">
                 <div class="navbar-start">
                     <a class="navbar-item" target="_blank"
                        href="https://github.com/BaronVonPerko/kickoffwp">
