@@ -1,7 +1,13 @@
 <nav class="navbar is-primary">
     <div class="container">
         <div class="navbar-brand">
-            <a href="/" class="navbar-item is-size-4">KickoffWP</a>
+            @guest()
+                <a href="/" class="navbar-item is-size-4">KickoffWP</a>
+            @endguest
+
+            @auth()
+                <a href="/start" class="navbar-item is-size-4">KickoffWP</a>
+            @endauth
 
             <button class="button navbar-burger">
                 <span></span><span></span><span></span>
