@@ -14,7 +14,7 @@ class StartPageTest extends TestCase {
 	public function it_has_a_page_that_is_accessible_by_everyone() {
 		$this->get( '/start' )
 		     ->assertStatus( 200 )
-		     ->assertSee( 'Ready to get started?' );
+		     ->assertSee( 'Please register with us' );
 	}
 
 	/** @test */
