@@ -18,7 +18,7 @@
                        autofocus class="input">
             </div>
         </div>
-        <div class="field" v-if="newType != 3 && newType != 4">
+        <div class="field" v-if="allowDefault">
             <div class="label">Default</div>
             <div class="control">
                 <input type="text" id="newDefault" v-model="newDefault" placeholder="Default" :disabled="submitting"
@@ -55,13 +55,24 @@
                 });
         },
 
+        computed: {
+            allowDefault: function () {
+                return this.checkAllowDefault();
+            },
+        },
+
         methods: {
+            checkAllowDefault: function() {
+                var type = this.fieldTypes.filter((type)=> { return type.id === this.newType});
+                return type.length && type[0].allow_default;
+            },
+
             add: function () {
                 if (!this.newLabel) return;
 
                 this.submitting = true;
 
-                if(this.newType == 3 || this.newType == 4) this.newDefault = null;
+                if(!this.checkAllowDefault()) this.newDefault = null;
 
                 axios.post('/theme/' + this.themeId + '/sections/' + this.sectionId + '/fields', {
                     'label': this.newLabel,
