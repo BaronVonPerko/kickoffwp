@@ -34,18 +34,26 @@
             </div>
 
             @if(env('APP_ENV') == 'local')
-                <div class="navbar-menu navbar-end">
-                    <a class="navbar-item" target="_blank"
-                       href="https://github.com/BaronVonPerko/kickoffwp">
-                        Contribute
-                    </a>
+                <div class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" target="_blank"
+                           href="https://github.com/BaronVonPerko/kickoffwp">
+                            Contribute
+                        </a>
 
-                    <a class="navbar-item" target="_blank"
-                       href="https://github.com/BaronVonPerko/kickoffwp/issues">
-                        Report Issues
-                    </a>
+                        <a class="navbar-item" target="_blank"
+                           href="https://github.com/BaronVonPerko/kickoffwp/issues">
+                            Report Issues
+                        </a>
+                    </div>
+                <div class="navbar-end">
 
-                    <a href="/start" class="navbar-item">Start</a>
+                    @auth()
+                        <a href="/start" class="navbar-item">Themes</a>
+                    @endauth
+                    @guest()
+                        <a href="/start" class="navbar-item">Start</a>
+                    @endguest
 
                     @guest()
                         <a href="/login" class="navbar-item">Login</a>
@@ -55,6 +63,7 @@
                     @auth()
                         <a href="/logout" class="navbar-item">Logout</a>
                     @endauth
+                </div>
                 </div>
             @endif
         </div>
