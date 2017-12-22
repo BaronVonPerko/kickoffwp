@@ -5,9 +5,9 @@
                 <div class="column">
                     <div class="card">
                         <div class="card-header">
-                            <span class="card-header-title">
-                                Fields for {{this.themeName}} {{this.sectionName}}
-                            </span>
+                            <p class="card-header-title">
+                                Create New Fields
+                            </p>
                         </div>
                         <div class="card-content">
                             <p>
@@ -24,6 +24,10 @@
                 </div>
 
                 <div class="column">
+                    <div>
+                        <a class="is-size-5" :href="'/theme/'+themeId+'/sections'">{{this.themeName}}</a>
+                        <span class="is-size-6 has-text-grey-light">{{this.sectionName}}</span>
+                    </div>
                     <field-list :fields="fieldList" :theme-id="themeId" :section-id="sectionId"></field-list>
                 </div>
 
