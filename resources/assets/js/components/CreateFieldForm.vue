@@ -27,7 +27,7 @@
         </div>
         <div class="field">
             <button class="button is-block is-info is-large is-fullwidth"
-                    @click="add()" :disabled="submitting || !newLabel">
+                    @click="add()" :disabled="submitting || !newLabel || !newType">
                 Add
             </button>
         </div>
