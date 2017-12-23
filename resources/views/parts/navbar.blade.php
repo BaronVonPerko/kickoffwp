@@ -14,12 +14,12 @@
             </button>
         </div>
 
-        @if(env('APP_ENV') == 'local')
-            <div class="navbar-menu" id="header-menu">
-                <div class="navbar-start">
-                    <a href="/howto" class="navbar-item">
-                        How to Use
-                    </a>
+        <div class="navbar-menu" id="header-menu">
+            <div class="navbar-start">
+                <a href="/howto" class="navbar-item">
+                    How to Use
+                </a>
+                @if(env('APP_ENV') == 'local')
 
                     <a class="navbar-item" target="_blank"
                        href="https://github.com/BaronVonPerko/kickoffwp">
@@ -27,13 +27,16 @@
                     </a>
 
                     @auth()
-                    <a class="navbar-item" target="_blank"
-                       href="https://github.com/BaronVonPerko/kickoffwp/issues">
-                        Report Issues
-                    </a>
+                        <a class="navbar-item" target="_blank"
+                           href="https://github.com/BaronVonPerko/kickoffwp/issues">
+                            Report Issues
+                        </a>
                     @endauth
-                </div>
-                <div class="navbar-end">
+                @endif
+            </div>
+            <div class="navbar-end">
+
+                @if(env('APP_ENV') == 'local')
 
                     @auth()
                         <a href="/start" class="navbar-item">Themes</a>
@@ -50,8 +53,8 @@
                     @auth()
                         <a href="/logout" class="navbar-item">Logout</a>
                     @endauth
-                </div>
+                @endif
             </div>
-        @endif
+        </div>
     </div>
 </nav>
