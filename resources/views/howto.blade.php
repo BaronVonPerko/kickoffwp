@@ -92,7 +92,7 @@
                         fields as you want for the particular section you are using.
                     </p>
                 </div>
-                <div class="column">
+                <div class="column is-one-third">
                     <img src="{{asset('images/fields.png')}}" alt="Customizer Fields">
                 </div>
             </div>
