@@ -36,7 +36,7 @@
                                 </p>
                             @else
                                 <p>
-                                    Want to create more customizer files for your themes?
+                                    Want to create more themes?
                                 </p>
                             @endif
                         </div>
