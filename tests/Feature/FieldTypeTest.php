@@ -14,6 +14,9 @@ class FieldTypeTest extends TestCase
 		$this->get('/fieldtypes')
 			->assertStatus(200)
 			->assertSee('Text Area')
-			->assertSee('Text Input');
+			->assertSee('Text Input')
+			->assertSee('Color Control')
+			->assertSee('Upload Control')
+			->assertSee('Image Control');
     }
 }
