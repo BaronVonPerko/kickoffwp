@@ -22,9 +22,15 @@
                         Contribute
                     </a>
 
+                    @auth()
                     <a class="navbar-item" target="_blank"
                        href="https://github.com/BaronVonPerko/kickoffwp/issues">
                         Report Issues
+                    </a>
+                    @endauth
+
+                    <a href="howto" class="navbar-item">
+                        How to Use
                     </a>
                 </div>
                 <div class="navbar-end">

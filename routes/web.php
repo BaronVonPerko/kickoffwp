@@ -5,6 +5,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/howto', function () {
+	return view('howto');
+});
+
 Auth::routes();
 
 Route::get('/logout', function () {
