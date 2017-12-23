@@ -17,7 +17,7 @@
         @if(env('APP_ENV') == 'local')
             <div class="navbar-menu" id="header-menu">
                 <div class="navbar-start">
-                    <a href="howto" class="navbar-item">
+                    <a href="/howto" class="navbar-item">
                         How to Use
                     </a>
 
