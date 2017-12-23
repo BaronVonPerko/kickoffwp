@@ -24,6 +24,7 @@
                 <input type="text" id="newDefault" v-model="newDefault" placeholder="Default" :disabled="submitting"
                        required class="input">
             </div>
+            <p v-text="instructions" class="has-text-grey"></p>
         </div>
         <div class="field">
             <button class="button is-block is-info is-large is-fullwidth"
@@ -58,6 +59,10 @@
         computed: {
             allowDefault: function () {
                 return this.checkAllowDefault();
+            },
+            instructions: function () {
+                var type = this.fieldTypes.filter((type)=> { return type.id === this.newType});
+                return type.length && type[0].instructions;
             },
         },
 
