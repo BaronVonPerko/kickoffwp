@@ -1,13 +1,8 @@
 <?php
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/howto', function () {
-	return view('howto');
-});
+Route::view('/', 'welcome');
+Route::view('/howto', 'howto');
 
 Auth::routes();
 
