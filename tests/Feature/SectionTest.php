@@ -6,6 +6,7 @@ use App\CustomizerField;
 use App\Section;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 use \App\Theme;
 
@@ -15,9 +16,16 @@ class SectionTest extends TestCase {
 
 	/** @test */
 	function it_can_save_a_section_to_a_theme() {
-		$theme = factory( Theme::class )->create();
+		$owner = factory(User::class)->create();
+		$theme = factory( Theme::class )->create(['user_id' => $owner->id]);
 
-		$this->post( "/theme/$theme->id/sections", [ "name" => "Test Section" ] );
+		$this->post( "/theme/$theme->id/sections", [ "name" => "Test Section" ] )
+			->assertStatus(200)
+			->assertJson(["success" => false]);
+
+		$this->actingAs($owner)
+		     ->post( "/theme/$theme->id/sections", [ "name" => "Test Section" ] )
+			->assertStatus(302);
 
 		$sections = Theme::find( $theme->id )->sections;
 

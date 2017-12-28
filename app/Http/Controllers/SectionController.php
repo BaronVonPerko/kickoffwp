@@ -43,7 +43,7 @@ class SectionController extends Controller
     {
 	    $theme = Theme::find($themeId);
 
-	    if($theme->user_id == null || $theme->user_id == Auth::id()) {
+	    if($theme->user_id == Auth::id()) {
 	    	$data = $request->validated();
 	    	$data["theme_id"] = $themeId;
 

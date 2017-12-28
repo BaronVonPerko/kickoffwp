@@ -38,7 +38,7 @@ Route::prefix('/theme/{themeId}')->group(function () {
  * Fields
  */
 Route::prefix('/theme/{themeId}/sections/{sectionId}')->group(function () {
-    Route::resource('fields', 'FieldsController');
+    Route::resource('fields', 'FieldsController')->middleware('auth');
 });
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

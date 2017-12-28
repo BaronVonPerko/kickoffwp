@@ -15,9 +15,14 @@ class CustomizerFieldTest extends TestCase {
 
 	/** @test */
 	public function it_has_a_page_to_add_the_fields() {
-		$section = factory( Section::class )->create();
+		$owner = factory(User::class)->create();
+		$theme = factory(Theme::class)->create(['user_id' => $owner->id]);
+		$section = factory( Section::class )->create(['theme_id' => $theme->id]);
 
-		$this->get( "/theme/$section->theme_id/sections/$section->id/fields" )->assertStatus( 200 );
+		$this->get( "/theme/$section->theme_id/sections/$section->id/fields" )->assertStatus( 302 );
+
+		$this->actingAs($owner)
+			->get("/theme/$section->theme_id/sections/$section->id/fields")->assertStatus(200);
 	}
 
 	/** @test */
@@ -50,9 +55,17 @@ class CustomizerFieldTest extends TestCase {
 
 	/** @test */
 	public function it_can_create_a_new_field() {
-		$section = factory( Section::class )->create();
+		$owner = factory(User::class)->create();
+		$theme = factory(Theme::class)->create(['user_id' => $owner->id]);
+		$section = factory( Section::class )->create(['theme_id' => $theme->id]);
 
 		$this->post( "/theme/$section->theme_id/sections/$section->id/fields", [
+			"label"   => "My Field",
+			"default" => "#00ff00",
+			"type_id" => 1,
+		] )->assertStatus( 302 );
+
+		$this->actingAs($owner)->post( "/theme/$section->theme_id/sections/$section->id/fields", [
 			"label"   => "My Field",
 			"default" => "#00ff00",
 			"type_id" => 1,
@@ -109,10 +122,17 @@ class CustomizerFieldTest extends TestCase {
 
 	/** @test */
 	function it_can_be_updated() {
-		$section = factory( Section::class )->create();
+		$owner = factory(User::class)->create();
+		$theme = factory(Theme::class)->create(['user_id' => $owner->id]);
+		$section = factory( Section::class )->create(['theme_id' => $theme->id]);
 		$field   = factory( CustomizerField::class )->create( [ 'section_id' => $section->id ] );
 
 		$this->put( "/theme/$section->theme_id/sections/$section->id/fields/$field->id", [
+			"label"   => "Updated",
+			"default" => "Some text",
+		] )->assertStatus( 302 );
+
+		$this->actingAs($owner)->put( "/theme/$section->theme_id/sections/$section->id/fields/$field->id", [
 			"label"   => "Updated",
 			"default" => "Some text",
 		] )->assertStatus( 200 )
@@ -124,13 +144,19 @@ class CustomizerFieldTest extends TestCase {
 
 	/** @test */
 	function it_requires_matching_section_and_theme_ids_to_update() {
-		$section = factory( Section::class )->create();
+		$owner = factory(User::class)->create();
+		$theme = factory(Theme::class)->create(['user_id' => $owner->id]);
+		$section = factory( Section::class )->create(['theme_id' => $theme->id]);
 		$field   = factory( CustomizerField::class )->create( [ 'section_id' => $section->id ] );
 
 		$badThemeId   = $section->theme_id + 1;
 		$badSectionId = $section->id + 1;
 
 		$this->put( "/theme/$badThemeId/sections/$section->id/fields/$field->id", [
+			"label" => "Updated",
+		] )->assertStatus( 302 );
+
+		$this->actingAs($owner)->put( "/theme/$badThemeId/sections/$section->id/fields/$field->id", [
 			"label" => "Updated",
 		] )->assertStatus( 200 )
 		     ->assertJson( [ "success" => false, "message" => "Invalid ID" ] );
@@ -164,25 +190,36 @@ class CustomizerFieldTest extends TestCase {
 
 	/** @test */
 	function it_can_be_destroyed() {
-		$section = factory( Section::class )->create();
+		$owner = factory(User::class)->create();
+		$theme = factory(Theme::class)->create(['user_id' => $owner->id]);
+		$section = factory( Section::class )->create(['theme_id' => $theme->id]);
 		$field   = factory( CustomizerField::class )->create( [ 'section_id' => $section->id ] );
 
 		$this->delete( "/theme/$section->theme_id/sections/$section->id/fields/$field->id" )
+		     ->assertStatus( 302 );
+
+		$this->actingAs($owner)->delete( "/theme/$section->theme_id/sections/$section->id/fields/$field->id" )
 		     ->assertStatus( 200 )
 		     ->assertJson( [ "success" => true ] );
+
 
 		$this->assertNull( $field->fresh() );
 	}
 
 	/** @test */
 	function it_only_deletes_with_correct_theme_and_section_ids() {
-		$section = factory( Section::class )->create();
+		$owner = factory(User::class)->create();
+		$theme = factory(Theme::class)->create(['user_id' => $owner->id]);
+		$section = factory( Section::class )->create(['theme_id' => $theme->id]);
 		$field   = factory( CustomizerField::class )->create( [ 'section_id' => $section->id ] );
 
 		$badThemeId   = $section->theme_id + 1;
 		$badSectionId = $section->id + 1;
 
 		$this->delete( "/theme/$section->theme_id/sections/$badSectionId/fields/$field->id" )
+		     ->assertStatus( 302 );
+
+		$this->actingAs($owner)->delete( "/theme/$section->theme_id/sections/$badSectionId/fields/$field->id" )
 		     ->assertStatus( 200 )
 		     ->assertJson( [ "success" => false, "message" => "Invalid ID" ] );
 
