@@ -9,15 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ThemeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -49,28 +40,6 @@ class ThemeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -81,7 +50,7 @@ class ThemeController extends Controller
     {
 	    $theme = Theme::find($id);
 
-	    if($theme->user_id == null || $theme->user_id == Auth::id()) {
+	    if($theme->user_id == Auth::id()) {
 		    $theme->update( $request->validated() );
 		    return response()->json(["success" => true]);
 	    }
@@ -99,7 +68,7 @@ class ThemeController extends Controller
     {
         $theme = Theme::find($id);
 
-        if($theme->user_id == null || $theme->user_id == Auth::id()) {
+        if($theme->user_id == Auth::id()) {
         	foreach($theme->sections as $section) {
         		$section->fields()->delete();
 	        }

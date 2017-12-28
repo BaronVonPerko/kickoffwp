@@ -33,15 +33,6 @@ class FieldsController extends Controller {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create() {
-		//
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request $request
@@ -69,28 +60,6 @@ class FieldsController extends Controller {
 			"section_id" => $sectionId,
 			"type_id"    => $typeId,
 		] );
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show( $id ) {
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit( $id ) {
-		//
 	}
 
 	/**
@@ -155,7 +124,7 @@ class FieldsController extends Controller {
 
 		$theme = Theme::find($section->theme_id);
 
-		if(!is_null($theme->user_id) and $theme->user_id != Auth::id()) {
+		if($theme->user_id != Auth::id()) {
 			return false;
 		}
 

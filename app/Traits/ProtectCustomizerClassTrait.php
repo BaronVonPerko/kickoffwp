@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Theme;
 use Illuminate\Support\Facades\Auth;
 
 trait ProtectCustomizerClassTrait {
@@ -11,13 +12,13 @@ trait ProtectCustomizerClassTrait {
 			return false;
 		}
 
-		$user = Auth::user();
-
-		if ( $user != null && $theme->user_id != $user->id ) {
-			return false;
+		if(is_int($theme) || is_string($theme)) {
+			$theme = Theme::find($theme);
 		}
 
-		if ( $user == null && $theme->user_id != null ) {
+		$user = Auth::user();
+
+		if ( $theme->user_id != $user->id ) {
 			return false;
 		}
 

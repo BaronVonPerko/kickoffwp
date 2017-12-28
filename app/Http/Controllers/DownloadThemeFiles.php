@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Jobs\GenerateSectionFile;
 use App\Theme;
+use App\Traits\ProtectCustomizerClassTrait;
 use Chumper\Zipper\Zipper;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 
 class DownloadThemeFiles extends Controller
 {
+	use ProtectCustomizerClassTrait;
+
     public function __invoke(Filesystem $files, $themeId) {
     	$theme = Theme::find($themeId);
     	$sections = $theme->sections()->get();
     	$filenames = [];
 
+		if(!$this->checkUserAccess($theme)) return;
 
     	foreach($sections as $section) {
     		$sectionId = $section->id;
