@@ -15,4 +15,6 @@ Check out the [How To](http://kickoffwp.com/howto) page for more information on 
 
 KickoffWP is a Laravel 5.5 application.  All changes should be branched from the *dev* branch.  Make pull requests from your branch back into *dev* for review.
 
+You will need to create your own *.env* file.  As an example, *.env-example* is at the root of the project.  
+
 If you wish, you may add your name and links to your website and/or twitter handle in the *contributors.md* file.
