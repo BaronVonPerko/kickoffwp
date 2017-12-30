@@ -74,26 +74,26 @@
         <div class="section">
             <div class="container">
                 <h3 class="title">Customizer Fields</h3>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <p>
-                        KickoffWP has the five default customizer field types that ship with WordPress:
-                    </p>
-                    <ul>
-                        <li>Text Field</li>
-                        <li>Text Area</li>
-                        <li>Color Control</li>
-                        <li>File Upload</li>
-                        <li>Image Control</li>
-                    </ul>
-                    <p>
-                        Some fields also allow a <em>default</em> field to be set. Enter as many
-                        fields as you want for the particular section you are using.
-                    </p>
-                </div>
-                <div class="column is-one-third">
-                    <img src="{{asset('images/fields.png')}}" alt="Customizer Fields">
+                <div class="columns">
+                    <div class="column">
+                        <p>
+                            KickoffWP has the five default customizer field types that ship with WordPress:
+                        </p>
+                        <ul>
+                            <li>Text Field</li>
+                            <li>Text Area</li>
+                            <li>Color Control</li>
+                            <li>File Upload</li>
+                            <li>Image Control</li>
+                        </ul>
+                        <p>
+                            Some fields also allow a <em>default</em> field to be set. Enter as many
+                            fields as you want for the particular section you are using.
+                        </p>
+                    </div>
+                    <div class="column is-one-third">
+                        <img src="{{asset('images/fields.png')}}" alt="Customizer Fields">
+                    </div>
                 </div>
             </div>
         </div>
