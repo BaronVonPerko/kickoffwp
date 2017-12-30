@@ -112,7 +112,7 @@ class SectionTest extends TestCase {
 		     ->assertJson( [ "success" => true ] );
 
 		$this->assertNull( $field->fresh() );
-		$this->assertNull( $section->fresh() );
+		$this->assertNotNull( $section->fresh()->deleted_at );
 		$this->assertNotNull( $theme->fresh() );
 	}
 
@@ -133,5 +133,15 @@ class SectionTest extends TestCase {
 		$this->assertNotNull( $field->fresh() );
 		$this->assertNotNull( $section->fresh() );
 		$this->assertNotNull( $theme->fresh() );
+	}
+
+	/** @test */
+	function deleted_sections_can_be_found_in_trash() {
+		$section = factory(Section::class)->create();
+
+		$section->delete();
+
+		$this->assertNotContains($section->id, Section::get()->pluck('id'));
+		$this->assertContains($section->id, Section::withTrashed()->get()->pluck('id'));
 	}
 }

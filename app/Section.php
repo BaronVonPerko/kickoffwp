@@ -3,8 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Section extends Model {
+	use SoftDeletes;
+
 	protected $fillable = [ 'name', 'theme_id' ];
 
 	function scopeSectionTheme( $query, $themeId ) {

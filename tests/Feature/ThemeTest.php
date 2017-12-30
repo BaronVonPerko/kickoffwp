@@ -81,9 +81,9 @@ class ThemeTest extends TestCase {
 		$this->delete( "/theme/$theme->id" );
 
 		$this->assertNotNull( $theme->fresh()->deleted_at );
-		$this->assertNull( $sections->fresh()[0] );
-		$this->assertNull( $sections->fresh()[1] );
-		$this->assertNull( $sections->fresh()[2] );
+		$this->assertNotNull( $sections->fresh()[0]->deleted_at );
+		$this->assertNotNull( $sections->fresh()[1]->deleted_at );
+		$this->assertNotNull( $sections->fresh()[2]->deleted_at );
 	}
 
 	/** @test */
@@ -96,9 +96,9 @@ class ThemeTest extends TestCase {
 		$this->delete( "/theme/$theme->id" );
 
 		$this->assertNotNull( $theme->fresh()->deleted_at );
-		$this->assertNull( $sections->fresh()[0] );
-		$this->assertNull( $sections->fresh()[1] );
-		$this->assertNull( $sections->fresh()[2] );
+		$this->assertNotNull( $sections->fresh()[0]->deleted_at );
+		$this->assertNotNull( $sections->fresh()[1]->deleted_at );
+		$this->assertNotNull( $sections->fresh()[2]->deleted_at );
 		$this->assertNull( $fields1->fresh()[0] );
 		$this->assertNull( $fields1->fresh()[1] );
 		$this->assertNull( $fields2->fresh() );
