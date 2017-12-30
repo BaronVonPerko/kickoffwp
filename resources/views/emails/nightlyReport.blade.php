@@ -1,10 +1,8 @@
 @component('mail::message')
-# Kickoff Nightly Status Report
+    # KickoffWP Nightly Status Report
 
-{{$count}} new emails signed up today!
+    {{$newUserCount}} new users registered today.
 
-@foreach($emails as $email)
-    * {{$email->email}}
-@endforeach
+    {{$newThemeCount}} new themes created today.
 
 @endcomponent

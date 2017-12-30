@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use App\Theme;
+use App\User;
 use App\WelcomeEmailAddress;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -12,7 +14,7 @@ class NightlyReport extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $count, $emails;
+    protected $newUserCount, $newThemeCount;
 
     /**
      * Create a new message instance.
@@ -21,8 +23,8 @@ class NightlyReport extends Mailable
      */
     public function __construct()
     {
-        $this->emails = WelcomeEmailAddress::SignedUpToday()->get();
-        $this->count  = $this->emails->count();
+        $this->newThemeCount = Theme::withTrashed()->whereDate('created_at', date('Y-m-d'))->count();
+        $this->newUserCount = User::whereDate('created_at', date('Y-m-d'))->count();
     }
 
     /**
@@ -33,8 +35,8 @@ class NightlyReport extends Mailable
     public function build()
     {
         return $this->markdown('emails.nightlyReport', [
-            'emails' => $this->emails,
-            'count'  => $this->count,
+            'newThemeCount' => $this->newThemeCount,
+	        'newUserCount' => $this->newUserCount
         ])
             ->from(env('MAIL_FROM_ADDRESS'))
             ->to(env('MAIL_TO_ADDRESS'));

@@ -42,6 +42,3 @@ Route::prefix('/theme/{themeId}/sections/{sectionId}')->group(function () {
 });
 
 //Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
-//Route::get( 'email', function () {
-//	return new \App\Mail\LaunchEmail();
-//} );
