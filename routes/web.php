@@ -45,5 +45,3 @@ Route::prefix('/theme/{themeId}/sections/{sectionId}')->group(function () {
 //Route::get( 'email', function () {
 //	return new \App\Mail\LaunchEmail();
 //} );
-
-Route::get('welcome/email/send/now', 'SendWelcomeEmail');
