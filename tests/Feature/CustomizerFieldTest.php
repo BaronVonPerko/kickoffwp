@@ -203,7 +203,7 @@ class CustomizerFieldTest extends TestCase {
 		     ->assertJson( [ "success" => true ] );
 
 
-		$this->assertNull( $field->fresh() );
+		$this->assertNotNull( $field->fresh()->deleted_at );
 	}
 
 	/** @test */
@@ -254,5 +254,16 @@ class CustomizerFieldTest extends TestCase {
 		$field     = factory( CustomizerField::class )->create(['type_id' => $fieldType->id]);
 
 		$this->assertEquals($fieldType->stub, $field->type->stub);
+	}
+
+	/** @test */
+	function deleted_fields_can_be_found_in_trash() {
+		$field = factory(CustomizerField::class)->create();
+
+		$field->delete();
+
+		$this->assertNotContains($field->id, CustomizerField::get()->pluck('id'));
+
+		$this->assertContains($field->id, CustomizerField::withTrashed()->get()->pluck('id'));
 	}
 }

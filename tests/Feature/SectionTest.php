@@ -111,7 +111,7 @@ class SectionTest extends TestCase {
 		     ->assertStatus( 200 )
 		     ->assertJson( [ "success" => true ] );
 
-		$this->assertNull( $field->fresh() );
+		$this->assertNotNull( $field->fresh()->deleted_at );
 		$this->assertNotNull( $section->fresh()->deleted_at );
 		$this->assertNotNull( $theme->fresh() );
 	}

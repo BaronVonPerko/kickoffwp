@@ -99,9 +99,9 @@ class ThemeTest extends TestCase {
 		$this->assertNotNull( $sections->fresh()[0]->deleted_at );
 		$this->assertNotNull( $sections->fresh()[1]->deleted_at );
 		$this->assertNotNull( $sections->fresh()[2]->deleted_at );
-		$this->assertNull( $fields1->fresh()[0] );
-		$this->assertNull( $fields1->fresh()[1] );
-		$this->assertNull( $fields2->fresh() );
+		$this->assertNotNull( $fields1->fresh()[0]->deleted_at );
+		$this->assertNotNull( $fields1->fresh()[1]->deleted_at );
+		$this->assertNotNull( $fields2->fresh()->deleted_at );
 	}
 
 	/** @test */
