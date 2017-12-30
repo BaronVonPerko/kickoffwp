@@ -33,7 +33,7 @@ class ThemeTest extends TestCase {
 		     ->assertJson( [ "success" => true ] );
 
 
-		$this->assertNull( $theme->fresh() );
+		$this->assertNotNull( $theme->fresh()->deleted_at );
 	}
 
 	/** @test */
@@ -45,7 +45,7 @@ class ThemeTest extends TestCase {
 		     ->delete( "/theme/$theme->id" )
 		     ->assertJson( [ "success" => true ] );
 
-		$this->assertNull( $theme->fresh() );
+		$this->assertNotNull( $theme->fresh()->deleted_at );
 	}
 
 	/** @test */
@@ -80,7 +80,7 @@ class ThemeTest extends TestCase {
 
 		$this->delete( "/theme/$theme->id" );
 
-		$this->assertNull( $theme->fresh() );
+		$this->assertNotNull( $theme->fresh()->deleted_at );
 		$this->assertNull( $sections->fresh()[0] );
 		$this->assertNull( $sections->fresh()[1] );
 		$this->assertNull( $sections->fresh()[2] );
@@ -95,7 +95,7 @@ class ThemeTest extends TestCase {
 
 		$this->delete( "/theme/$theme->id" );
 
-		$this->assertNull( $theme->fresh() );
+		$this->assertNotNull( $theme->fresh()->deleted_at );
 		$this->assertNull( $sections->fresh()[0] );
 		$this->assertNull( $sections->fresh()[1] );
 		$this->assertNull( $sections->fresh()[2] );
@@ -153,5 +153,14 @@ class ThemeTest extends TestCase {
 		     ->assertJson(["success" => true]);
 
 		$this->assertEquals("Something", $theme->fresh()->name);
+	}
+
+	/** @test */
+	function deleted_themes_can_be_found_in_trash() {
+		$theme = factory(Theme::class)->create();
+
+		$theme->delete();
+
+		$this->assertContains($theme->id, Theme::withTrashed()->get()->pluck('id'));
 	}
 }
