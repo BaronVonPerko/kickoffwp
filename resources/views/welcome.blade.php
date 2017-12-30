@@ -17,7 +17,16 @@
                                 KickoffWP does it for you quickly, easily, and for free!
                             </h2>
 
-                            <welcome-email-signup></welcome-email-signup>
+                            <div class="field">
+                                <div class="control has-text-centered">
+                                    <a href="/register">
+                                        <button class="button is-large is-primary">
+                                            Register for FREE
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
