@@ -19,41 +19,35 @@
                 <a href="/howto" class="navbar-item">
                     How to Use
                 </a>
-                @if(env('APP_ENV') == 'local')
 
+                <a class="navbar-item" target="_blank"
+                   href="https://github.com/BaronVonPerko/kickoffwp">
+                    Contribute
+                </a>
+
+                @auth()
                     <a class="navbar-item" target="_blank"
-                       href="https://github.com/BaronVonPerko/kickoffwp">
-                        Contribute
+                       href="https://github.com/BaronVonPerko/kickoffwp/issues">
+                        Report Issues
                     </a>
-
-                    @auth()
-                        <a class="navbar-item" target="_blank"
-                           href="https://github.com/BaronVonPerko/kickoffwp/issues">
-                            Report Issues
-                        </a>
-                    @endauth
-                @endif
+                @endauth
             </div>
             <div class="navbar-end">
+                @auth()
+                    <a href="/start" class="navbar-item">Themes</a>
+                @endauth
+                @guest()
+                    <a href="/start" class="navbar-item">Start</a>
+                @endguest
 
-                @if(env('APP_ENV') == 'local')
+                @guest()
+                    <a href="/login" class="navbar-item">Login</a>
+                    <a href="/register" class="navbar-item">Register</a>
+                @endguest
 
-                    @auth()
-                        <a href="/start" class="navbar-item">Themes</a>
-                    @endauth
-                    @guest()
-                        <a href="/start" class="navbar-item">Start</a>
-                    @endguest
-
-                    @guest()
-                        <a href="/login" class="navbar-item">Login</a>
-                        <a href="/register" class="navbar-item">Register</a>
-                    @endguest
-
-                    @auth()
-                        <a href="/logout" class="navbar-item">Logout</a>
-                    @endauth
-                @endif
+                @auth()
+                    <a href="/logout" class="navbar-item">Logout</a>
+                @endauth
             </div>
         </div>
     </div>
