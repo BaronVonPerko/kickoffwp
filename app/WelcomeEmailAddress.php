@@ -14,4 +14,8 @@ class WelcomeEmailAddress extends Model {
 	function markSent() {
 		$this->update(['is_sent' => true]);
 	}
+
+	function scopeNotSent($query) {
+		return $query->whereIsSent(0);
+	}
 }
