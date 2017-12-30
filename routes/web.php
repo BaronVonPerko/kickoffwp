@@ -41,9 +41,9 @@ Route::prefix('/theme/{themeId}/sections/{sectionId}')->group(function () {
     Route::resource('fields', 'FieldsController')->middleware('auth');
 });
 
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
-Route::get( 'email', function () {
-	return new \App\Mail\LaunchEmail();
-} );
+//Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+//Route::get( 'email', function () {
+//	return new \App\Mail\LaunchEmail();
+//} );
 
 Route::get('welcome/email/send/now', 'SendWelcomeEmail');
