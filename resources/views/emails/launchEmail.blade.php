@@ -1,8 +1,8 @@
 @component('mail::message')
-# We are Live!
+# Happy New Year!
 
 Thank you for waiting patiently for the development of
-KickoffWP.  Be sure to check out the
+KickoffWP.  We are now live!  Be sure to check out the
 <a href="http://kickoffwp.com/howto">how to</a> page
 to learn more about how to use KickoffWP.
 
