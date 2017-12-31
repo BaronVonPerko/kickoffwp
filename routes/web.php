@@ -46,4 +46,5 @@ Route::prefix('/theme/{themeId}/sections/{sectionId}')->group(function () {
  */
 Route::group(['prefix' => 'admin', 'middleware' => 'isAdmin'], function() {
 	Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+	Route::get('dashboard', 'AdminDashboard');
 });
