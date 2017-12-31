@@ -3,11 +3,14 @@
 namespace Tests\Feature;
 
 use App\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AdminDashboardTest extends TestCase
 {
+	use DatabaseTransactions;
+
     /** @test */
     function only_admin_users_can_access_dashboard() {
     	$this->get('/admin/dashboard')
