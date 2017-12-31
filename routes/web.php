@@ -41,4 +41,9 @@ Route::prefix('/theme/{themeId}/sections/{sectionId}')->group(function () {
     Route::resource('fields', 'FieldsController')->middleware('auth');
 });
 
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('isAdmin');
+/**
+ * Admin Pages
+ */
+Route::group(['prefix' => 'admin', 'middleware' => 'isAdmin'], function() {
+	Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+});
