@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\TestUserRegisteredNotification;
 use App\Jobs\ClearStorage;
 use App\Jobs\NightlyReport;
 use Illuminate\Console\Scheduling\Schedule;
@@ -15,7 +16,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        TestUserRegisteredNotification::class,
     ];
 
     /**

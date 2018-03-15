@@ -108,6 +108,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'slack_webhook' => env('SLACK_WEBHOOK'),
+
     /*
     |--------------------------------------------------------------------------
     | Logging Configuration
