@@ -21,10 +21,10 @@ class NightlyReport extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($newThemeCount, $newUserCount)
     {
-        $this->newThemeCount = Theme::withTrashed()->whereDate('created_at', date('Y-m-d'))->count();
-        $this->newUserCount = User::whereDate('created_at', date('Y-m-d'))->count();
+        $this->newThemeCount = $newThemeCount;
+        $this->newUserCount = $newUserCount;
     }
 
     /**
