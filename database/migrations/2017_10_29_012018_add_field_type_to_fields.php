@@ -14,7 +14,7 @@ class AddFieldTypeToFields extends Migration
     public function up()
     {
         Schema::table('customizer_fields', function($table) {
-            $table->integer('type_id');
+            $table->integer('type_id')->nullable();
         });
     }
 
